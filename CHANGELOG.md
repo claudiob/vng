@@ -1,0 +1,57 @@
+## [Unreleased]
+
+## [0.1.13] - 2024-11-15
+
+- Enable Vng.configuration.security_token
+
+## [0.1.12] - 2024-11-15
+
+- Adds ServiceType.where(zip:)
+
+## [0.1.11] - 2024-11-15
+
+- Adds Zip
+
+## [0.1.10] - 2024-11-14
+
+- Adds Service Type
+
+## [0.1.9] - 2024-11-13
+
+- Adds Franchise
+
+## [0.1.8] - 2024-11-13
+
+- Adds Security Token
+
+## [0.1.7] - 2024-11-12
+
+- Adds Case
+
+## [0.1.6] - 2024-11-12
+
+- Adds WorkOrder
+
+## [0.1.5] - 2024-11-11
+
+- Adds Availability
+
+## [0.1.4] - 2024-11-11
+
+- Adds Price Item
+
+## [0.1.3] - 2024-11-10
+
+- Adds Location
+
+## [0.1.2] - 2024-11-10
+
+- Adds Breed
+
+## [0.1.1] - 2024-11-10
+
+- Adds Lead.create, Lead#destroy, Contact.create, Contact#destroy
+
+## [0.1.0] - 2024-11-10
+
+- Initial release
