@@ -5,7 +5,10 @@ Vng helps you write apps that need to interact with Vonigo.
 
 The **source code** is available on [GitHub](https://github.com/HouseAccountEng/vng) and the **documentation** on [RubyDoc](http://www.rubydoc.info/gems/vng/frames).
 
+[![Code Climate](https://codeclimate.com/github/HouseAccountEng/vng.png)](https://codeclimate.com/github/HouseAccountEng/vng)
+
 After [registering your app](#configuring-your-app), you can run commands like:
+
 
 ```ruby
 Vng::Zip.all
