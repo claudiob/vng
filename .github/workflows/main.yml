@@ -24,4 +24,4 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
     - name: Run the default task
-      run: bundle exec rake
+      run: VNG_HOST='$VNG_HOST' VNG_USERNAME='$VNG_USERNAME' VNG_PASSWORD='$VNG_PASSWORD' bundle exec rspec
