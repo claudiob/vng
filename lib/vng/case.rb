@@ -10,7 +10,7 @@ module Vng
     def self.create(client_id:, summary:, comments:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "3",
+        method: '3',
         objectID: client_id,
         Fields: [
            {fieldID: 219, optionID: 239}, # Status: open
@@ -29,13 +29,13 @@ module Vng
         http.request request
       end
 
-      new id: JSON(response.body)["Case"]["objectID"]
+      new id: JSON(response.body)['Case']['objectID']
     end
 
     def destroy
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "4",
+        method: '4',
         objectID: id,
       }
 

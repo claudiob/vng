@@ -10,7 +10,7 @@ module Vng
     def self.create(name:, weight:, breed_option_id:, client_id:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "3",
+        method: '3',
         clientID: client_id,
         Fields: [
            {fieldID: 1013, fieldValue: name},
@@ -30,20 +30,20 @@ module Vng
       end
 
       # curl = 'curl'.tap do |curl|
-      #   curl <<  " -X POST"
+      #   curl <<  ' -X POST'
       #   request.each_header{|k, v| curl << %Q{ -H "#{k}: #{v}"}}
       #   curl << %Q{ -d '#{request.body}'} if request.body
       #   curl << %Q{ "#{uri.to_s}"}
       # end
       # puts curl
 
-      new id: JSON(response.body)["Asset"]["objectID"]
+      new id: JSON(response.body)['Asset']['objectID']
     end
 
     def destroy
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "4",
+        method: '4',
         objectID: id,
       }
 

@@ -25,10 +25,10 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["Zips"].map do |body|
-        zip = body["zip"]
-        state = body["state"]
-        zone_name = body["zoneName"]
+      JSON(response.body)['Zips'].map do |body|
+        zip = body['zip']
+        state = body['state']
+        zone_name = body['zoneName']
 
         new zip: zip, state: state, zone_name: zone_name
       end

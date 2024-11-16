@@ -22,8 +22,8 @@ module Vng
 
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "3",
-        serviceTypeID: "14", # only return items of serviceType "Pet Grooming"
+        method: '3',
+        serviceTypeID: '14', # only return items of serviceType 'Pet Grooming'
         lockID: lock_id,
         clientID: client_id,
         contactID: contact_id,
@@ -31,7 +31,7 @@ module Vng
         Fields: [
           {fieldID: 200, fieldValue: summary},
           {fieldID: 186, fieldValue: duration.to_i},
-          {fieldID: 201, optionID: "9537"} # label: Online Tentative
+          {fieldID: 201, optionID: '9537'} # label: Online Tentative
         ],
         Charges: charges
       }
@@ -46,14 +46,14 @@ module Vng
         http.request request
       end
 
-      id = JSON(response.body)["WorkOrder"]["objectID"]
+      id = JSON(response.body)['WorkOrder']['objectID']
       new id: id
     end
 
     def destroy
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "4",
+        method: '4',
         objectID: id,
       }
 

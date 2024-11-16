@@ -13,7 +13,7 @@ module Vng
     def self.find_by(zip:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "1",
+        method: '1',
         zip: zip,
       }
 
@@ -27,8 +27,8 @@ module Vng
         http.request request
       end
 
-      franchise_id = JSON(response.body)["Ids"]["franchiseID"]
-      new(id: franchise_id) unless franchise_id == "0"
+      franchise_id = JSON(response.body)['Ids']['franchiseID']
+      new(id: franchise_id) unless franchise_id == '0'
     end
 
     def self.all
@@ -46,12 +46,12 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["Franchises"].filter do |body|
-        body["isActive"]
+      JSON(response.body)['Franchises'].filter do |body|
+        body['isActive']
       end.map do |body|
-        id = body["franchiseID"]
-        name = body["franchiseName"]
-        gmt_offset = body["gmtOffsetFranchise"]
+        id = body['franchiseID']
+        name = body['franchiseName']
+        gmt_offset = body['gmtOffsetFranchise']
 
         new id: id, name: name, gmt_offset: gmt_offset
       end

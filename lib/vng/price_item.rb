@@ -16,8 +16,8 @@ module Vng
     def self.where(location_id:, asset_id:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "2",
-        serviceTypeID: "14", # only return items of serviceType "Pet Grooming"
+        method: '2',
+        serviceTypeID: '14', # only return items of serviceType 'Pet Grooming'
         locationID: location_id,
         assetID: asset_id,
       }
@@ -32,17 +32,17 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["PriceItems"].filter do |body|
-        # TODO: body["serviceBadge"] != "Not Offered"
-        body["isOnline"] && body["isActive"]
+      JSON(response.body)['PriceItems'].filter do |body|
+        # TODO: body['serviceBadge'] != 'Not Offered'
+        body['isOnline'] && body['isActive']
       end.map do |body|
-        id = body["priceItemID"]
-        price_item = body["priceItem"]
-        value = body["value"]
-        tax_id = body["taxID"]
-        duration_per_unit = body["durationPerUnit"]
-        service_badge = body["serviceBadge"]
-        service_category = body["serviceCategory"]
+        id = body['priceItemID']
+        price_item = body['priceItem']
+        value = body['value']
+        tax_id = body['taxID']
+        duration_per_unit = body['durationPerUnit']
+        service_badge = body['serviceBadge']
+        service_category = body['serviceCategory']
 
         new id: id, price_item: price_item, value: value, tax_id: tax_id, duration_per_unit: duration_per_unit, service_badge: service_badge, service_category: service_category
       end

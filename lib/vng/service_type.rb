@@ -25,10 +25,10 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["ServiceTypes"].map do |body|
-        id = body["serviceTypeID"]
-        type = body["serviceType"]
-        duration = body["duration"]
+      JSON(response.body)['ServiceTypes'].map do |body|
+        id = body['serviceTypeID']
+        type = body['serviceType']
+        duration = body['duration']
 
         new id: id, type: type, duration: duration
       end
@@ -50,12 +50,12 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["ServiceTypes"].filter do |body|
-        body["isActive"]
+      JSON(response.body)['ServiceTypes'].filter do |body|
+        body['isActive']
       end.map do |body|
-        id = body["serviceTypeID"]
-        type = body["serviceType"]
-        duration = body["duration"]
+        id = body['serviceTypeID']
+        type = body['serviceType']
+        duration = body['duration']
 
         new id: id, type: type, duration: duration
       end

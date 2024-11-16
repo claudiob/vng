@@ -22,10 +22,10 @@ module Vng
     def self.create(address:, city:, zip:, state:, client_id:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "3",
+        method: '3',
         clientID: client_id,
         Fields: [
-           {fieldID: 779, optionID: 9906}, # "USA"
+           {fieldID: 779, optionID: 9906}, # 'USA'
            {fieldID: 778, optionID: STATES_OPTION_ID[state.to_sym]},
            {fieldID: 776, fieldValue: city},
            {fieldID: 773, fieldValue: address},
@@ -43,13 +43,13 @@ module Vng
         http.request request
       end
 
-      new id: JSON(response.body)["Location"]["objectID"]
+      new id: JSON(response.body)['Location']['objectID']
     end
 
     def destroy
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "4",
+        method: '4',
         objectID: id,
       }
 

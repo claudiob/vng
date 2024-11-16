@@ -12,8 +12,8 @@ module Vng
     def self.where(location_id:, duration:, from_time:, to_time:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "0",
-        serviceTypeID: "14", # only return items of serviceType "Pet Grooming"
+        method: '0',
+        serviceTypeID: '14', # only return items of serviceType 'Pet Grooming'
         locationID: location_id,
         duration: duration.to_i,
         dateStart: from_time.to_i,
@@ -30,10 +30,10 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["Availability"].map do |body|
-        route_id = body["routeID"]
-        date = Date.strptime body["dayID"], "%Y%m%d"
-        minutes = body["startTime"].to_i
+      JSON(response.body)['Availability'].map do |body|
+        route_id = body['routeID']
+        date = Date.strptime body['dayID'], '%Y%m%d'
+        minutes = body['startTime'].to_i
 
         new route_id: route_id, date: date, minutes: minutes
       end

@@ -14,7 +14,7 @@ module Vng
     def self.create(first_name:, last_name:, email:, phone:, client_id:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "3",
+        method: '3',
         clientID: client_id,
         Fields: [
            {fieldID: 127, fieldValue: first_name},
@@ -36,11 +36,11 @@ module Vng
 
       body = JSON response.body
 
-      id = body["Contact"]["objectID"]
-      first_name = body["Fields"].find{|field| field["fieldID"] == 127}["fieldValue"]
-      last_name = body["Fields"].find{|field| field["fieldID"] == 128}["fieldValue"]
-      email = body["Fields"].find{|field| field["fieldID"] == 97}["fieldValue"]
-      phone = body["Fields"].find{|field| field["fieldID"] == 96}["fieldValue"]
+      id = body['Contact']['objectID']
+      first_name = body['Fields'].find{|field| field['fieldID'] == 127}['fieldValue']
+      last_name = body['Fields'].find{|field| field['fieldID'] == 128}['fieldValue']
+      email = body['Fields'].find{|field| field['fieldID'] == 97}['fieldValue']
+      phone = body['Fields'].find{|field| field['fieldID'] == 96}['fieldValue']
 
       new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone
     end
@@ -48,7 +48,7 @@ module Vng
     def destroy
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "4",
+        method: '4',
         objectID: id,
       }
 

@@ -10,11 +10,11 @@ module Vng
     def self.create(duration:, location_id:, date:, minutes:, route_id:)
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "2",
-        serviceTypeID: "14", # only create items of serviceType "Pet Grooming"
+        method: '2',
+        serviceTypeID: '14', # only create items of serviceType 'Pet Grooming'
         duration: duration.to_i,
         locationID: location_id,
-        dayID: date.strftime("%Y%m%d"),
+        dayID: date.strftime('%Y%m%d'),
         routeID: route_id,
         startTime: minutes,
       }
@@ -29,14 +29,14 @@ module Vng
         http.request request
       end
 
-      id = JSON(response.body)["Ids"]["lockID"]
+      id = JSON(response.body)['Ids']['lockID']
       new id: id
     end
 
     def destroy
       body = {
         securityToken: Vng.configuration.security_token,
-        method: "4",
+        method: '4',
         objectID: id,
       }
 

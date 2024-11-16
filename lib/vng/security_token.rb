@@ -27,7 +27,7 @@ module Vng
         http.request request
       end
 
-      token = JSON(response.body)["securityToken"]
+      token = JSON(response.body)['securityToken']
 
       new token: token, host: host
     end

@@ -28,13 +28,13 @@ module Vng
         http.request request
       end
 
-      JSON(response.body)["Breeds"].map do |body|
-        id = body["breedID"]
-        name = body["breed"]
-        species = body["species"]
-        option_id = body["optionID"]
-        low_weight = body["breedLowWeight"]
-        high_weight = body["breedHighWeight"]
+      JSON(response.body)['Breeds'].map do |body|
+        id = body['breedID']
+        name = body['breed']
+        species = body['species']
+        option_id = body['optionID']
+        low_weight = body['breedLowWeight']
+        high_weight = body['breedHighWeight']
 
         new id: id, name: name, species: species, option_id: option_id, low_weight: low_weight, high_weight: high_weight
       end
