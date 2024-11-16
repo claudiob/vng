@@ -1,6 +1,10 @@
+require 'vng/resource'
+
 module Vng
   # Provides methods to interact with Vonigo leads.
-  class Lead
+  class Lead < Resource
+    PATH = '/api/v1/data/Leads/'
+
     attr_reader :id, :name, :email, :phone
 
     def initialize(id:, name:, email:, phone:)
@@ -12,7 +16,6 @@ module Vng
 
     def self.create(name:, email:, phone:)
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '3',
         Fields: [
            {fieldID: 121, optionID: '59'},
@@ -22,19 +25,9 @@ module Vng
         ]
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/Leads/'
+      data = request path: PATH, body: body
 
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
-
-      body = JSON response.body
-
-      if body['errNo']
+      if data['errNo']
         # 'errNo'=>-600,
         # 'errMsg'=>'Data validation failed.',
         # 'dateNow'=>'1731342482',
@@ -43,30 +36,21 @@ module Vng
         # raise Vng::Error
       end
 
-      id = body['Client']['objectID']
-      name = body['Fields'].find{|field| field['fieldID'] == 126}['fieldValue']
-      email = body['Fields'].find{|field| field['fieldID'] == 238}['fieldValue']
-      phone = body['Fields'].find{|field| field['fieldID'] == 1024}['fieldValue']
+      id = data['Client']['objectID']
+      name = data['Fields'].find{|field| field['fieldID'] == 126}['fieldValue']
+      email = data['Fields'].find{|field| field['fieldID'] == 238}['fieldValue']
+      phone = data['Fields'].find{|field| field['fieldID'] == 1024}['fieldValue']
 
       new id: id, name: name, email: email, phone: phone
     end
 
     def destroy
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '4',
         objectID: id,
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/Leads/'
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
+      self.class.request path: PATH, body: body
     end
   end
 end

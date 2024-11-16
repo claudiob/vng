@@ -1,6 +1,10 @@
+require 'vng/resource'
+
 module Vng
   # Provides methods to interact with Vonigo work orders.
-  class WorkOrder
+  class WorkOrder < Resource
+    PATH = '/api/v1/data/WorkOrders/'
+
     attr_reader :id
 
     def initialize(id:)
@@ -26,7 +30,6 @@ module Vng
       end
 
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '3',
         serviceTypeID: '14', # only return items of serviceType 'Pet Grooming'
         lockID: lock_id,
@@ -41,36 +44,18 @@ module Vng
         Charges: charges
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/WorkOrders/'
+      data = request path: PATH, body: body
 
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
-
-      id = JSON(response.body)['WorkOrder']['objectID']
-      new id: id
+      new id: data['WorkOrder']['objectID']
     end
 
     def destroy
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '4',
         objectID: id,
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/WorkOrders/'
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
+      data = self.class.request path: PATH, body: body
     end
   end
 end

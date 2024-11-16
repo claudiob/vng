@@ -1,6 +1,10 @@
+require 'vng/resource'
+
 module Vng
   # Provides methods to interact with Vonigo availabilities.
-  class Availability
+  class Availability < Resource
+    PATH = '/api/v1/resources/availability/'
+
     attr_reader :route_id, :date, :minutes
 
     def initialize(route_id:, date:, minutes:)
@@ -20,20 +24,12 @@ module Vng
         dateEnd: to_time.to_i,
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/resources/availability/'
+      data = request path: PATH, body: body
 
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
-
-      JSON(response.body)['Availability'].map do |body|
-        route_id = body['routeID']
-        date = Date.strptime body['dayID'], '%Y%m%d'
-        minutes = body['startTime'].to_i
+      data['Availability'].map do |availability|
+        route_id = availability['routeID']
+        date = Date.strptime availability['dayID'], '%Y%m%d'
+        minutes = availability['startTime'].to_i
 
         new route_id: route_id, date: date, minutes: minutes
       end

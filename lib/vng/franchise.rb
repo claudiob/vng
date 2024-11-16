@@ -1,6 +1,10 @@
+require 'vng/availability'
+
 module Vng
   # Provides methods to interact with Vonigo franchises.
-  class Franchise
+  class Franchise < Resource
+    PATH = '/api/v1/resources/franchises/'
+
     attr_reader :id, :name, :gmt_offset
 
     def initialize(id:, name: nil, gmt_offset: nil)
@@ -12,46 +16,25 @@ module Vng
 
     def self.find_by(zip:)
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '1',
         zip: zip,
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/resources/availability/'
+      data = request path: Vng::Availability::PATH, body: body
 
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
-
-      franchise_id = JSON(response.body)['Ids']['franchiseID']
+      franchise_id = data['Ids']['franchiseID']
       new(id: franchise_id) unless franchise_id == '0'
     end
 
     def self.all
-      body = {
-        securityToken: Vng.configuration.security_token,
-      }
+      data = request path: PATH
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/resources/franchises/'
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
-
-      JSON(response.body)['Franchises'].filter do |body|
-        body['isActive']
-      end.map do |body|
-        id = body['franchiseID']
-        name = body['franchiseName']
-        gmt_offset = body['gmtOffsetFranchise']
+      data['Franchises'].filter do |franchise|
+        franchise['isActive']
+      end.map do |franchise|
+        id = franchise['franchiseID']
+        name = franchise['franchiseName']
+        gmt_offset = franchise['gmtOffsetFranchise']
 
         new id: id, name: name, gmt_offset: gmt_offset
       end

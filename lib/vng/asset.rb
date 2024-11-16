@@ -1,6 +1,10 @@
+require 'vng/resource'
+
 module Vng
   # Provides methods to interact with Vonigo assets.
-  class Asset
+  class Asset < Resource
+    PATH = '/api/v1/data/Assets/'
+
     attr_reader :id
 
     def initialize(id:)
@@ -9,7 +13,6 @@ module Vng
 
     def self.create(name:, weight:, breed_option_id:, client_id:)
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '3',
         clientID: client_id,
         Fields: [
@@ -19,15 +22,7 @@ module Vng
         ]
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/Assets/'
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
+      data = request path: PATH, body: body
 
       # curl = 'curl'.tap do |curl|
       #   curl <<  ' -X POST'
@@ -37,25 +32,16 @@ module Vng
       # end
       # puts curl
 
-      new id: JSON(response.body)['Asset']['objectID']
+      new id: data['Asset']['objectID']
     end
 
     def destroy
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '4',
         objectID: id,
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/Assets/'
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
+      data = self.class.request path: PATH, body: body
     end
   end
 end

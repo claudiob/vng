@@ -1,6 +1,10 @@
+require 'vng/resource'
+
 module Vng
   # Provides methods to interact with Vonigo locations.
-  class Location
+  class Location < Resource
+    PATH = '/api/v1/data/Locations/'
+
     # TODO: fetch from /system/objects/ method: 1, objectID: 20
     STATES_OPTION_ID = {
       AK: 9879, AL: 9878, AR: 9877, AZ: 9880, CA: 9883, CO: 9876, CT: 9875,
@@ -21,7 +25,6 @@ module Vng
 
     def self.create(address:, city:, zip:, state:, client_id:)
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '3',
         clientID: client_id,
         Fields: [
@@ -33,35 +36,18 @@ module Vng
         ]
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/Locations/'
+      data = request path: PATH, body: body
 
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
-
-      new id: JSON(response.body)['Location']['objectID']
+      new id: data['Location']['objectID']
     end
 
     def destroy
       body = {
-        securityToken: Vng.configuration.security_token,
         method: '4',
         objectID: id,
       }
 
-      uri = URI::HTTPS.build host: 'aussiepetmobileusatraining2.vonigo.com', path: '/api/v1/data/Locations/'
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.initialize_http_header 'Content-Type' => 'application/json'
-      request.body = body.to_json
-
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
-      end
+      self.class.request path: PATH, body: body
     end
   end
 end
