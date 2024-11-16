@@ -7,15 +7,20 @@ module Vng
       @id = id
     end
 
-    def self.create(client_id:, summary:, comments:)
+    def self.create(client_id:, summary:, comments:, phone:, email:, zip:)
       body = {
         securityToken: Vng.configuration.security_token,
         method: '3',
-        objectID: client_id,
+        clientID: client_id,
         Fields: [
            {fieldID: 219, optionID: 239}, # Status: open
-           {fieldID: 220, fieldValue: summary},
-           {fieldID: 230, fieldValue: comments},
+           {fieldID: 220, fieldValue: summary}, # Summary:
+           {fieldID: 230, fieldValue: comments}, # Comments:
+           {fieldID: 226, optionID: 227}, # Type: 'General request'
+           {fieldID: 227, optionID: 232}, # Preferred Contact Method: 'Phone'
+           {fieldID: 228, fieldValue: phone}, # Phone Me Back at:
+           {fieldID: 229, fieldValue: email}, # Email:
+           {fieldID: 1023, fieldValue: zip}, # Zip Code:
         ]
       }
 

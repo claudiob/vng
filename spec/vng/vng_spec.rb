@@ -1,24 +1,28 @@
 RSpec.describe 'A typical flow' do
+  let(:zip) { '97703' }
+  let(:phone) { '8648648640' }
+  let(:email) { 'vng@example.com' }
+
   let(:token) { Vng::SecurityToken.create host: Vng.configuration.host, username: Vng.configuration.username, password: Vng.configuration.password }
   let(:zips) { Vng::Zip.all }
   let(:franchises) { Vng::Franchise.all }
-  let(:active_franchise) { Vng::Franchise.find_by zip: '97703' }
+  let(:active_franchise) { Vng::Franchise.find_by zip: zip }
   let(:inactive_franchise) { Vng::Franchise.find_by zip: '97403' }
   let(:breeds) { Vng::Breed.all }
-  let(:lead) { Vng::Lead.create name: 'Vng Example', email: 'vng@example.com', phone: '8648648640' }
-  let(:contact) { Vng::Contact.create client_id: lead.id, first_name: 'Vng', last_name: 'Example', email: 'vng@example.com', phone: '8648648640' }
-  let(:location) { Vng::Location.create client_id: lead.id, address: '16 NW Kansas Ave', city: 'Bend', state: 'OR', zip: '97703' }
+  let(:lead) { Vng::Lead.create name: 'Vng Example', email: email, phone: phone }
+  let(:contact) { Vng::Contact.create client_id: lead.id, first_name: 'Vng', last_name: 'Example', email: email, phone: phone }
+  let(:location) { Vng::Location.create client_id: lead.id, address: '16 NW Kansas Ave', city: 'Bend', state: 'OR', zip: zip }
   let(:asset) { Vng::Asset.create name: 'Lassie', weight: 66, breed_option_id: breeds.first.option_id, client_id: lead.id }
   let(:price_items) { Vng::PriceItem.where location_id: location.id, asset_id: asset.id }
   let(:service_types) { Vng::ServiceType.all }
-  let(:service_types_by_zip) { Vng::ServiceType.where zip: '97703' }
+  let(:service_types_by_zip) { Vng::ServiceType.where zip: zip }
   let(:availability) { Vng::Availability.where(location_id: location.id, duration: 30, from_time: Time.now, to_time: (Time.now + 60*60*24*5)).first }
   let(:lock) { Vng::Lock.create duration: 30, location_id: location.id, date: availability.date, minutes: availability.minutes, route_id: availability.route_id }
   let(:line_items) { price_items.take(3).map do |price_item|
     { price_item_id: price_item.id, tax_id: price_item.tax_id, asset_id: asset.id, description: price_item.price_item, price: price_item.value }
   end }
   let(:work_order) { Vng::WorkOrder.create lock_id: lock.id, client_id: lead.id, contact_id: contact.id, location_id: location.id, duration: 30, summary: 'Example work order', line_items: line_items }
-  let(:casus) { Vng::Case.create client_id: lead.id, summary: 'Vng case', comments: 'An example case' }
+  let(:casus) { Vng::Case.create client_id: lead.id, summary: 'Vng case', comments: 'An example case', phone: phone, email: email, zip: zip  }
 
   after do
     casus.destroy

@@ -15,7 +15,12 @@ module Vng
           assetID: line_item[:asset_id],
           Fields: [
             {fieldID: 9289, fieldValue: line_item[:description]},
-            {fieldID: 9287, fieldValue: line_item[:price]}
+            {fieldID: 9287, fieldValue: line_item[:price]}, # Unit price
+            {fieldID: 8673, fieldValue: line_item[:price]}, # Price item
+            {fieldID: 813, fieldValue: line_item[:price]}, # Price
+            {fieldID: 9286, fieldValue: line_item[:price]}, # Subtotal
+            {fieldID: 9283, fieldValue: line_item[:price]}, # Total
+            {fieldID: 9288, fieldValue: 1}, # Qty
           ]
         }
       end
