@@ -45,15 +45,6 @@ indicating the full version in your Gemfile (~> *major*.*minor*.*patch*)
 guarantees that your project won’t occur in any error when you `bundle update`
 and a new version of Vng is released.
 
-Available resources
-===================
-
-Vng::Zip
--------
-
-TODO
-
-
 Configuring your app
 ====================
 

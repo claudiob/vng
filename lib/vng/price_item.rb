@@ -28,7 +28,6 @@ module Vng
       data = request path: PATH, body: body
 
       data['PriceItems'].filter do |body|
-        # TODO: body['serviceBadge'] != 'Not Offered'
         body['isOnline'] && body['isActive']
       end.map do |body|
         id = body['priceItemID']

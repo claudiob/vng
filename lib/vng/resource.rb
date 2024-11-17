@@ -1,3 +1,5 @@
+require 'vng/connection_error'
+
 module Vng
   # Provides an abstract class for every Vonigo resource.
   class Resource
@@ -15,6 +17,8 @@ module Vng
       end
 
       JSON response.body
+    rescue Errno::ECONNREFUSED, SocketError => e
+      raise Vng::ConnectionError, e.message
     end
 
     def self.host

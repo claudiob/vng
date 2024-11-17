@@ -3,7 +3,7 @@ RSpec.describe 'A typical flow' do
   let(:phone) { '8648648640' }
   let(:email) { 'vng@example.com' }
 
-  let(:token) { Vng::SecurityToken.create host: Vng.configuration.host, username: Vng.configuration.username, password: Vng.configuration.password }
+  let(:token) { Vng::SecurityToken.create }
   let(:zips) { Vng::Zip.all }
   let(:franchises) { Vng::Franchise.all }
   let(:active_franchise) { Vng::Franchise.find_by zip: zip }
@@ -41,6 +41,7 @@ RSpec.describe 'A typical flow' do
     expect(franchises).to all be_a Vng::Franchise
     expect(active_franchise).to be_a Vng::Franchise
     expect(inactive_franchise).to be_nil
+    expect(token.assign_to franchise_id: active_franchise.id).to be
     expect(breeds).to all be_a Vng::Breed
     expect(lead).to be_a Vng::Lead
     expect(contact).to be_a Vng::Contact

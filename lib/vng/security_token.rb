@@ -7,23 +7,32 @@ module Vng
 
     attr_reader :token
 
-    def initialize(token:, host:)
+    def initialize(token:)
       @token = token
-      @host = host
     end
 
-    def self.create(host:, username:, password:)
+    def self.create
       body = {
         app_version: '1',
         company: 'Vonigo',
-        host: host,
-        password: Digest::MD5.hexdigest(password),
-        username: username,
+        username: Vng.configuration.username,
+        password: Digest::MD5.hexdigest(Vng.configuration.password),
       }
 
       data = request path: PATH, body: body, include_security_token: false
 
-      new token: data['securityToken'], host: host
+      new token: data['securityToken']
+    end
+
+    # TODO: re-add test
+    def assign_to(franchise_id:)
+      body = {
+        securityToken: @token,
+        method: "2",
+        franchiseID: franchise_id,
+      }
+
+      self.class.request path: PATH, body: body, include_security_token: false
     end
 
     def destroy

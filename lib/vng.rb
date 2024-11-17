@@ -9,6 +9,7 @@ require_relative 'vng/availability'
 require_relative 'vng/breed'
 require_relative 'vng/case'
 require_relative 'vng/config'
+require_relative 'vng/connection_error'
 require_relative 'vng/contact'
 require_relative 'vng/franchise'
 require_relative 'vng/lead'
@@ -20,8 +21,3 @@ require_relative 'vng/service_type'
 require_relative 'vng/version'
 require_relative 'vng/work_order'
 require_relative 'vng/zip'
-
-module Vng
-  class Error < StandardError; end
-  # Your code goes here...
-end
