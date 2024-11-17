@@ -89,8 +89,8 @@ How to release new versions
 
 If you are a manager of this project, remember to upgrade the [Vng gem](http://rubygems.org/gems/vng)
 whenever a new feature is added or a bug gets fixed.
-Make sure all the tests are passing ,
-document the changes in CHANGELOG.md and README.md, bump the version, then run
+Make sure all the tests are passing and the code is 100% test-covered.
+Document the changes in CHANGELOG.md and README.md, bump the version, then run:
 
     rake release
 
