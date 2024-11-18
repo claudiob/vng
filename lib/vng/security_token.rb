@@ -24,7 +24,8 @@ module Vng
       new token: data['securityToken']
     end
 
-    # TODO: re-add test
+    # TODO: Check if it's not the correct one already or catch
+    # Data validation failed. [{"fieldID"=>0, "fieldName"=>nil, "errNo"=>-5213, "errMsg"=>"Same franchise ID supplied."}]
     def assign_to(franchise_id:)
       body = {
         securityToken: @token,
@@ -32,15 +33,19 @@ module Vng
         franchiseID: franchise_id,
       }
 
-      self.class.request path: PATH, body: body, include_security_token: false
+      self.class.request path: '/api/v1/security/session/', body: body, include_security_token: false
+    rescue Vng::Error => e
+      # TODO: improve: ignore if the token was already assigned to the franchise
+      raise unless e.message.include? 'Same franchise ID supplied'
     end
 
     def destroy
-      body = {
-        securityToken: @token,
-      }
-
-      self.class.request path: PATH, body: body, include_security_token: false
+      query = { securityToken: @token }
+      self.class.request path: '/api/v1/security/logout/', query: query
+    rescue Vng::Error => e
+      p "Vng:Error! #{e}"
+      # TODO: improve: ignore if the token was already destroyed
+      raise unless e.message.include?('Session expired') || e.message.include?('Session does not exist')
     end
   end
 end

@@ -27,13 +27,13 @@ module Vng
       new id: data['Ids']['lockID']
     end
 
-    def destroy
-      body = {
-        method: '4',
-        objectID: id,
-      }
-
-      self.class.request path: PATH, body: body
-    end
+    # def destroy
+    #   body = {
+    #     method: '4',
+    #     lockID: id,
+    #   }
+    #
+    #   self.class.request path: PATH, body: body
+    # end
   end
 end

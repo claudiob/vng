@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.14] - 2024-11-17
+
+- Adds Vng::Error
+
 ## [0.1.13] - 2024-11-15
 
 - Enable Vng.configuration.security_token

@@ -32,14 +32,15 @@ module Vng
       new id: data['WorkOrder']['objectID']
     end
 
-    def destroy
-      body = {
-        method: '4',
-        objectID: id,
-      }
-
-      data = self.class.request path: PATH, body: body
-    end
+    # TODO: This moves to "archived". actual cancelation is different
+    # def destroy
+    #   body = {
+    #     method: '8',
+    #     objectID: id,
+    #   }
+    #
+    #   data = self.class.request path: PATH, body: body
+    # end
 
   private
 

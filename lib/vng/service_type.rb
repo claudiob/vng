@@ -33,7 +33,7 @@ module Vng
 
       data = request path: PATH, body: body
 
-      data['ServiceTypes'].filter do |body|
+      data.fetch('ServiceTypes', []).filter do |body|
         body['isActive']
       end.map do |body|
         id = body['serviceTypeID']

@@ -27,15 +27,6 @@ module Vng
 
       data = request path: PATH, body: body
 
-      if data['errNo']
-        # 'errNo'=>-600,
-        # 'errMsg'=>'Data validation failed.',
-        # 'dateNow'=>'1731342482',
-        # 'Errors'=>[{"fieldID"=>1024, "fieldName"=>"Phone # to Reach You", "errNo"=>-602, "errMsg"=>"Field data is in incorrect format."}]}
-
-        # raise Vng::Error
-      end
-
       id = data['Client']['objectID']
       name = data['Fields'].find{|field| field['fieldID'] == 126}['fieldValue']
       email = data['Fields'].find{|field| field['fieldID'] == 238}['fieldValue']
@@ -44,13 +35,15 @@ module Vng
       new id: id, name: name, email: email, phone: phone
     end
 
-    def destroy
-      body = {
-        method: '4',
-        objectID: id,
-      }
-
-      self.class.request path: PATH, body: body
-    end
+    # Data validation failed. [{"fieldID"=>0, "fieldName"=>nil, "errNo"=>-1201, "errMsg"=>"Lead ID does not exist."}]
+    # TODO: has become an account meanwhile!! so this doesn't work
+    # def destroy
+    #   body = {
+    #     method: '4',
+    #     objectID: id,
+    #   }
+    #
+    #   self.class.request path: PATH, body: body
+    # end
   end
 end
