@@ -18,7 +18,7 @@ module Vng
         method: '0',
         serviceTypeID: '14', # only return items of serviceType 'Pet Grooming'
         locationID: location_id,
-        duration: [duration.to_i, 30].min, # or 'duration is not provided'
+        duration: [duration.to_i, 30].max, # or 'duration is not provided'
         dateStart: from_time.to_i,
         dateEnd: to_time.to_i,
       }
