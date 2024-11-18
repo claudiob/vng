@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.15] - 2024-11-17
+
+- Require at least 30 minutes for availability
+
 ## [0.1.14] - 2024-11-17
 
 - Adds Vng::Error
