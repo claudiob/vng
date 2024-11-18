@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.17] - 2024-11-17
+
+- Require at least 30 minutes for slot
+
 ## [0.1.16] - 2024-11-17
 
 - Require at least 30 minutes for availability

@@ -15,7 +15,7 @@ module Vng
       body = {
         method: '2',
         serviceTypeID: '14', # only create items of serviceType 'Pet Grooming'
-        duration: duration.to_i,
+        duration: [duration.to_i, 30].max, # or 'duration is not supplied'
         locationID: location_id,
         dayID: date.strftime('%Y%m%d'),
         routeID: route_id,
