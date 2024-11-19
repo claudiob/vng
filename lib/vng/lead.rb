@@ -20,7 +20,7 @@ module Vng
         Fields: [
            {fieldID: 121, optionID: '59'},
            {fieldID: 126, fieldValue: name},
-           {fieldID: 238, fieldValue: email},
+           {fieldID: 238, fieldValue: URI.encode_uri_component(email)},
            {fieldID: 1024, fieldValue: phone},
         ]
       }

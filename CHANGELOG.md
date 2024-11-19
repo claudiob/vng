@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.18] - 2024-11-19
+
+- Ensure a plus sign in the email is not translated into a space
+
 ## [0.1.17] - 2024-11-17
 
 - Require at least 30 minutes for slot
