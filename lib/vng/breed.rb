@@ -16,7 +16,6 @@ module Vng
       @high_weight = high_weight
     end
 
-    # TODO: Needs pagination
     def self.all
       data = request path: PATH
 

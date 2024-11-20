@@ -12,7 +12,6 @@ module Vng
       @name = name
     end
 
-    # TODO: Needs pagination
     def self.all
       data = request path: PATH
 

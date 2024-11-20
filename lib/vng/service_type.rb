@@ -13,7 +13,6 @@ module Vng
       @duration = duration
     end
 
-    # TODO: Needs pagination
     def self.all
       data = request path: PATH
 

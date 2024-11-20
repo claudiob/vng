@@ -20,23 +20,22 @@ module Vng
         method: '3',
         clientID: client_id,
         Fields: [
-           {fieldID: 127, fieldValue: first_name},
-           {fieldID: 128, fieldValue: last_name},
-           {fieldID: 97, fieldValue: URI.encode_uri_component(email)},
-           {fieldID: 96, fieldValue: phone},
+           { fieldID: 127, fieldValue: first_name },
+           { fieldID: 128, fieldValue: last_name },
+           { fieldID: 97, fieldValue: URI.encode_uri_component(email) },
+           { fieldID: 96, fieldValue: phone },
         ]
       }
 
       data = request path: PATH, body: body
 
       id = data['Contact']['objectID']
-      first_name = data['Fields'].find{|field| field['fieldID'] == 127}['fieldValue']
-      last_name = data['Fields'].find{|field| field['fieldID'] == 128}['fieldValue']
-      email = data['Fields'].find{|field| field['fieldID'] == 97}['fieldValue']
-      phone = data['Fields'].find{|field| field['fieldID'] == 96}['fieldValue']
+      first_name = value_for_field data, 127
+      last_name = value_for_field data, 128
+      email = value_for_field data, 97
+      phone = value_for_field data, 96
 
       new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone
     end
   end
 end
-

@@ -4,7 +4,7 @@ RSpec.describe 'A typical flow' do
   let(:email) { 'vng@example.com' }
 
   let(:token) { Vng::SecurityToken.create }
-  before { Vng.configuration.security_token = token.token }
+  before { Vng.configure { |config| config.security_token = token.token } }
   let(:zips) { Vng::Zip.all }
   let(:routes) { Vng::Route.all }
   let(:franchises) { Vng::Franchise.all }
@@ -20,7 +20,7 @@ RSpec.describe 'A typical flow' do
   let(:service_types) { Vng::ServiceType.all }
   let(:service_types_by_zip) { Vng::ServiceType.where zip: zip }
   let(:availability) { Vng::Availability.where(location_id: location.id, duration: 30, from_time: Time.now, to_time: (Time.now + 60*60*24*5)).first }
-  let(:route) { Vng::Route.all.find{|route| route.id.to_s == availability.route_id} }
+  let(:route) { Vng::Route.all.find { |route| route.id.to_s == availability.route_id } }
   let(:lock) { Vng::Lock.create duration: 30, location_id: location.id, date: availability.date, minutes: availability.minutes, route_id: route.id }
   let(:line_items) { price_items.take(3).map do |price_item|
     { price_item_id: price_item.id, tax_id: price_item.tax_id, asset_id: asset.id, description: price_item.price_item, price: price_item.value }
@@ -46,7 +46,7 @@ RSpec.describe 'A typical flow' do
     expect(active_franchise).to be_a Vng::Franchise
     expect(inactive_franchise).to be_nil
     expect(franchise).to be_a Vng::Franchise
-    expect{token.assign_to franchise_id: active_franchise.id}.not_to raise_error
+    expect { token.assign_to franchise_id: active_franchise.id }.not_to raise_error
     expect(breeds).to all be_a Vng::Breed
     expect(lead).to be_a Vng::Lead
     expect(contact).to be_a Vng::Contact
@@ -61,4 +61,3 @@ RSpec.describe 'A typical flow' do
     expect(casus).to be_a Vng::Case
   end
 end
-

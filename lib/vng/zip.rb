@@ -13,7 +13,6 @@ module Vng
       @zone_name = zone_name
     end
 
-    # TODO: Needs pagination
     def self.all
       data = request path: PATH
 

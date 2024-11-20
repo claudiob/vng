@@ -5,7 +5,7 @@ module Vng
   class Location < Resource
     PATH = '/api/v1/data/Locations/'
 
-    # TODO: fetch from /system/objects/ method: 1, objectID: 20
+    # These could be fetched from /system/objects/ method: 1, objectID: 20
     STATES_OPTION_ID = {
       AK: 9879, AL: 9878, AR: 9877, AZ: 9880, CA: 9883, CO: 9876, CT: 9875,
       DC: 9874, DE: 9873, FL: 9872, GA: 9871, HI: 9870, IA: 9869, ID: 9868,
@@ -28,11 +28,11 @@ module Vng
         method: '3',
         clientID: client_id,
         Fields: [
-           {fieldID: 779, optionID: 9906}, # 'USA'
-           {fieldID: 778, optionID: STATES_OPTION_ID[state.to_sym]},
-           {fieldID: 776, fieldValue: city},
-           {fieldID: 773, fieldValue: address},
-           {fieldID: 775, fieldValue: zip},
+           { fieldID: 779, optionID: 9906 }, # 'USA'
+           { fieldID: 778, optionID: STATES_OPTION_ID[state.to_sym] },
+           { fieldID: 776, fieldValue: city },
+           { fieldID: 773, fieldValue: address },
+           { fieldID: 775, fieldValue: zip },
         ]
       }
 
@@ -42,4 +42,3 @@ module Vng
     end
   end
 end
-

@@ -18,19 +18,19 @@ module Vng
       body = {
         method: '3',
         Fields: [
-           {fieldID: 121, optionID: '59'},
-           {fieldID: 126, fieldValue: name},
-           {fieldID: 238, fieldValue: URI.encode_uri_component(email)},
-           {fieldID: 1024, fieldValue: phone},
+           { fieldID: 121, optionID: '59' },
+           { fieldID: 126, fieldValue: name },
+           { fieldID: 238, fieldValue: URI.encode_uri_component(email) },
+           { fieldID: 1024, fieldValue: phone },
         ]
       }
 
       data = request path: PATH, body: body
 
       id = data['Client']['objectID']
-      name = data['Fields'].find{|field| field['fieldID'] == 126}['fieldValue']
-      email = data['Fields'].find{|field| field['fieldID'] == 238}['fieldValue']
-      phone = data['Fields'].find{|field| field['fieldID'] == 1024}['fieldValue']
+      name = value_for_field data, 127
+      email = value_for_field data, 238
+      phone = value_for_field data, 1024
 
       new id: id, name: name, email: email, phone: phone
     end

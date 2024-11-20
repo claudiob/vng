@@ -16,8 +16,4 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
-
-  config.before do
-    Vng.configure{|config| config.security_token = '2067983'}
-  end
 end

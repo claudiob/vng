@@ -20,9 +20,9 @@ module Vng
         contactID: contact_id,
         locationID: location_id,
         Fields: [
-          {fieldID: 200, fieldValue: summary},
-          {fieldID: 186, fieldValue: duration.to_i},
-          {fieldID: 201, optionID: '9537'} # label: Online Tentative
+          { fieldID: 200, fieldValue: summary },
+          { fieldID: 186, fieldValue: duration.to_i },
+          { fieldID: 201, optionID: '9537' } # label: Online Tentative
         ],
         Charges: charges_for(line_items)
       }
@@ -47,13 +47,13 @@ module Vng
 
     def self.charge_fields_for(line_item)
       [
-        {fieldID: 9289, fieldValue: line_item[:description]},
-        {fieldID: 9287, fieldValue: line_item[:price]}, # Unit price
-        {fieldID: 8673, fieldValue: line_item[:price]}, # Price item
-        {fieldID: 813, fieldValue: line_item[:price]}, # Price
-        {fieldID: 9286, fieldValue: line_item[:price]}, # Subtotal
-        {fieldID: 9283, fieldValue: line_item[:price]}, # Total
-        {fieldID: 9288, fieldValue: 1}, # Qty
+        { fieldID: 9289, fieldValue: line_item[:description] },
+        { fieldID: 9287, fieldValue: line_item[:price] }, # Unit price
+        { fieldID: 8673, fieldValue: line_item[:price] }, # Price item
+        { fieldID: 813, fieldValue: line_item[:price] }, # Price
+        { fieldID: 9286, fieldValue: line_item[:price] }, # Subtotal
+        { fieldID: 9283, fieldValue: line_item[:price] }, # Total
+        { fieldID: 9288, fieldValue: 1 }, # Qty
       ]
     end
   end

@@ -16,14 +16,14 @@ module Vng
         method: '3',
         clientID: client_id,
         Fields: [
-           {fieldID: 219, optionID: 239}, # Status: open
-           {fieldID: 220, fieldValue: summary}, # Summary:
-           {fieldID: 230, fieldValue: comments}, # Comments:
-           {fieldID: 226, optionID: 227}, # Type: 'General request'
-           {fieldID: 227, optionID: 232}, # Preferred Contact Method: 'Phone'
-           {fieldID: 228, fieldValue: phone}, # Phone Me Back at:
-           {fieldID: 229, fieldValue: email}, # Email:
-           {fieldID: 1023, fieldValue: zip}, # Zip Code:
+           { fieldID: 219, optionID: 239 }, # Status: open
+           { fieldID: 220, fieldValue: summary }, # Summary:
+           { fieldID: 230, fieldValue: comments }, # Comments:
+           { fieldID: 226, optionID: 227 }, # Type: 'General request'
+           { fieldID: 227, optionID: 232 }, # Preferred Contact Method: 'Phone'
+           { fieldID: 228, fieldValue: phone }, # Phone Me Back at:
+           { fieldID: 229, fieldValue: email }, # Email:
+           { fieldID: 1023, fieldValue: zip }, # Zip Code:
         ]
       }
 
@@ -42,4 +42,3 @@ module Vng
     end
   end
 end
-

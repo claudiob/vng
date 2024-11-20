@@ -34,9 +34,7 @@ module Vng
       }
 
       data = request path: PATH, body: body
-
-      email_field = data['Fields'].find{|field| field['fieldID'] == 9}
-      email = email_field['fieldValue'] if email_field
+      email = value_for_field data, 9
       new id: franchise_id, email: email
     end
 

@@ -36,5 +36,10 @@ module Vng
     def self.security_token
       Vng.configuration.security_token
     end
+
+    def self.value_for_field(data, field_id)
+      field = data['Fields'].find { |field| field['fieldID'] == field_id }
+      field['fieldValue'] if field
+    end
   end
 end

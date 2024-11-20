@@ -16,10 +16,10 @@ module Vng
         method: '3',
         clientID: client_id,
         Fields: [
-           {fieldID: 1013, fieldValue: name},
-           {fieldID: 1017, fieldValue: weight},
-           {fieldID: 1014, optionID: breed_option_id},
-        ]
+          { fieldID: 1013, fieldValue: name },
+          { fieldID: 1017, fieldValue: weight },
+          { fieldID: 1014, optionID: breed_option_id },
+        ],
       }
 
       data = request path: PATH, body: body
@@ -45,4 +45,3 @@ module Vng
     end
   end
 end
-

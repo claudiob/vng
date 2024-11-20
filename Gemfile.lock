@@ -6,6 +6,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.4.2)
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -15,11 +16,20 @@ GEM
     irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    json (2.8.2)
+    language_server-protocol (3.17.0.3)
+    parallel (1.26.3)
+    parser (3.3.6.0)
+      ast (~> 2.4.1)
+      racc
     psych (5.2.0)
       stringio
+    racc (1.8.1)
+    rainbow (3.1.1)
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
+    regexp_parser (2.9.2)
     reline (0.5.11)
       io-console (~> 0.5)
     rspec (3.12.0)
@@ -35,6 +45,19 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.1)
+    rubocop (1.68.0)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 2.4, < 3.0)
+      rubocop-ast (>= 1.32.2, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.36.1)
+      parser (>= 3.3.1.0)
+    ruby-progressbar (1.13.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -42,6 +65,7 @@ GEM
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
     stringio (3.1.2)
+    unicode-display_width (2.6.0)
 
 PLATFORMS
   arm64-darwin-23
@@ -51,6 +75,7 @@ DEPENDENCIES
   debug
   rake (~> 13.0)
   rspec (~> 3.0)
+  rubocop
   simplecov
   vng!
 
