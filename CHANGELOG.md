@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.19] - 2024-11-19
+
+- Adds Route
+
 ## [0.1.18] - 2024-11-19
 
 - Ensure a plus sign in the email is not translated into a space

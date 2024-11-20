@@ -84,6 +84,8 @@ To run tests:
 rspec
 ```
 
+Set `VNG_MOCK=1` to test against HTTP mocks.
+
 How to release new versions
 ===========================
 

@@ -40,12 +40,16 @@ module Vng
     # @return [String] the password for the API calls.
     attr_accessor :password
 
+    # @return [Boolean] whether to mock the HTTP calls to Vonigo
+    attr_accessor :mock
+
     # Initialize the global configuration settings, using the values of
     # the specified following environment variables by default.
     def initialize
       @host = ENV['VNG_HOST']
       @username = ENV['VNG_USERNAME']
       @password = ENV['VNG_PASSWORD']
+      @mock = ENV['VNG_MOCK'] == '1'
     end
   end
 end

@@ -6,6 +6,7 @@ RSpec.describe 'A typical flow' do
   let(:token) { Vng::SecurityToken.create }
   before { Vng.configuration.security_token = token.token }
   let(:zips) { Vng::Zip.all }
+  let(:routes) { Vng::Route.all }
   let(:franchises) { Vng::Franchise.all }
   let(:active_franchise) { Vng::Franchise.find_by zip: zip }
   let(:inactive_franchise) { Vng::Franchise.find_by zip: '97403' }
