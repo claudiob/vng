@@ -43,7 +43,6 @@ module Vng
       query = { securityToken: @token }
       self.class.request path: '/api/v1/security/logout/', query: query
     rescue Vng::Error => e
-      p "Vng:Error! #{e}"
       # TODO: improve: ignore if the token was already destroyed
       raise unless e.message.include?('Session expired') || e.message.include?('Session does not exist')
     end
