@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.20] - 2024-11-20
+
+- Adds Franchise.find
+
 ## [0.1.19] - 2024-11-19
 
 - Adds Route

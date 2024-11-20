@@ -10,6 +10,7 @@ RSpec.describe 'A typical flow' do
   let(:franchises) { Vng::Franchise.all }
   let(:active_franchise) { Vng::Franchise.find_by zip: zip }
   let(:inactive_franchise) { Vng::Franchise.find_by zip: '97403' }
+  let(:franchise) { Vng::Franchise.find active_franchise.id }
   let(:breeds) { Vng::Breed.all }
   let(:lead) { Vng::Lead.create name: 'Vng Example', email: email, phone: phone }
   let(:contact) { Vng::Contact.create client_id: lead.id, first_name: 'Vng', last_name: 'Example', email: email, phone: phone }
@@ -43,6 +44,7 @@ RSpec.describe 'A typical flow' do
     expect(franchises).to all be_a Vng::Franchise
     expect(active_franchise).to be_a Vng::Franchise
     expect(inactive_franchise).to be_nil
+    expect(franchise).to be_a Vng::Franchise
     expect{token.assign_to franchise_id: active_franchise.id}.not_to raise_error
     expect(breeds).to all be_a Vng::Breed
     expect(lead).to be_a Vng::Lead

@@ -34,16 +34,5 @@ module Vng
 
       new id: id, name: name, email: email, phone: phone
     end
-
-    # Data validation failed. [{"fieldID"=>0, "fieldName"=>nil, "errNo"=>-1201, "errMsg"=>"Lead ID does not exist."}]
-    # TODO: has become an account meanwhile!! so this doesn't work
-    # def destroy
-    #   body = {
-    #     method: '4',
-    #     objectID: id,
-    #   }
-    #
-    #   self.class.request path: PATH, body: body
-    # end
   end
 end

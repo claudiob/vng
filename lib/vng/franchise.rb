@@ -5,12 +5,13 @@ module Vng
   class Franchise < Resource
     PATH = '/api/v1/resources/franchises/'
 
-    attr_reader :id, :name, :gmt_offset
+    attr_reader :id, :name, :gmt_offset, :email
 
-    def initialize(id:, name: nil, gmt_offset: nil)
+    def initialize(id:, name: nil, gmt_offset: nil, email: nil)
       @id = id
       @name = name
       @gmt_offset = gmt_offset
+      @email = email
     end
 
 
@@ -24,6 +25,19 @@ module Vng
 
       franchise_id = data['Ids']['franchiseID']
       new(id: franchise_id) unless franchise_id == '0'
+    end
+
+    def self.find(franchise_id)
+      body = {
+        method: '1',
+        objectID: franchise_id,
+      }
+
+      data = request path: PATH, body: body
+
+      email_field = data['Fields'].find{|field| field['fieldID'] == 9}
+      email = email_field['fieldValue'] if email_field
+      new id: franchise_id, email: email
     end
 
     def self.all

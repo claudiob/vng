@@ -37,16 +37,6 @@ module Vng
 
       new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone
     end
-
-    # Data validation failed. [{"fieldID"=>0, "fieldName"=>nil, "errNo"=>-1408, "errMsg"=>"Primary contact cannot be deleted."}]
-    # def destroy
-    #   body = {
-    #     method: '4',
-    #     objectID: id,
-    #   }
-    #
-    #   self.class.request path: PATH, body: body
-    # end
   end
 end
 

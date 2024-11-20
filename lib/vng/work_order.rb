@@ -32,16 +32,6 @@ module Vng
       new id: data['WorkOrder']['objectID']
     end
 
-    # TODO: This moves to "archived". actual cancelation is different
-    # def destroy
-    #   body = {
-    #     method: '8',
-    #     objectID: id,
-    #   }
-    #
-    #   data = self.class.request path: PATH, body: body
-    # end
-
   private
 
     def self.charges_for(line_items)

@@ -40,16 +40,6 @@ module Vng
 
       new id: data['Location']['objectID']
     end
-
-    # Data validation failed. [{"fieldID"=>0, "fieldName"=>"", "errNo"=>-1809, "errMsg"=>"Primary location cannot be deleted."}]
-    # def destroy
-    #   body = {
-    #     method: '4',
-    #     objectID: id,
-    #   }
-    #
-    #   self.class.request path: PATH, body: body
-    # end
   end
 end
 
