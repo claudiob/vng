@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [1.0.0] - 2024-11-20
+
+- First major release
+- Includes all the methods added so far
+- 100% code coverage and Rubocop-happy
+
 ## [0.1.20] - 2024-11-20
 
 - Adds Franchise.find
