@@ -32,6 +32,11 @@ module Vng
       new id: data['WorkOrder']['objectID']
     end
 
+    # Returns the URL to manage the work order in the Vonigo UI.
+    def url
+      "https://#{self.class.host}/Schedule/Job/Job_Main.aspx?woID=#{id}"
+    end
+
   private
 
     def self.charges_for(line_items)

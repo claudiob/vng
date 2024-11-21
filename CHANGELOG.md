@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.2] - 2024-11-20
+
+- Adds WorkOrder#url and Case#url
+
 ## [1.1] - 2024-11-20
 
 - Support optional ActiveSupport::Notifications

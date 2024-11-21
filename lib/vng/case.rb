@@ -32,6 +32,11 @@ module Vng
       new id: data['Case']['objectID']
     end
 
+    # Returns the URL to manage the case in the Vonigo UI.
+    def url
+      "https://#{self.class.host}/Client/Case/Case_Main.aspx?caseID=#{id}"
+    end
+
     def destroy
       body = {
         method: '4',

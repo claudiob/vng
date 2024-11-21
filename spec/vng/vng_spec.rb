@@ -58,6 +58,8 @@ RSpec.describe 'A typical flow' do
     expect(availability).to be_a Vng::Availability
     expect(lock).to be_a Vng::Lock
     expect(work_order).to be_a Vng::WorkOrder
+    expect(work_order.url).to match URI::regexp
     expect(casus).to be_a Vng::Case
+    expect(casus.url).to match URI::regexp
   end
 end
