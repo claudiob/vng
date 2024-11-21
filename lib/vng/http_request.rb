@@ -15,7 +15,7 @@ module Vng
   #   response = Vng::HTTPRequest.new(path: path, body: body).run
   #   response['Breeds'].map{|breed| breed['species']}
   # @api private
-  class HTTPRequest
+  class Request
     # Initializes an HTTPRequest object.
     # @param [Hash] options the options for the request.
     # @option options [String] :host The host of the request URI.
@@ -36,6 +36,7 @@ module Vng
     # @raise [Vng::ConnectionError] if the request fails.
     # @raise [Vng::Error] if parsed body includes errors.
     def run
+      return {} if response.body.empty?
       JSON(response.body).tap do |data|
         raise Error, "#{data['errMsg']} #{data['Errors']}" unless data['errNo'].zero?
       end
@@ -49,6 +50,7 @@ module Vng
         @response ||= Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
           http.request http_request
         end
+        puts "#{@path} #{@query} #{@body} ||| #{@response.body}"
         data[:response] = @response
       end
     rescue *server_errors => e

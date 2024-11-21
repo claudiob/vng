@@ -1,4 +1,4 @@
-require Vng.configuration.mock ? 'vng/mock_request' : 'vng/http_request'
+require ENV['VNG_MOCK'] ? 'vng/mock_request' : 'vng/http_request'
 
 module Vng
   # Provides an abstract class for every Vonigo resource.
@@ -10,7 +10,7 @@ module Vng
         body = body.merge securityToken: Vng.configuration.security_token
       end
 
-      HTTPRequest.new(host: host, path: path, query: query, body: body).run
+      Request.new(host: host, path: path, query: query, body: body).run
     end
 
     def self.value_for_field(data, field_id)

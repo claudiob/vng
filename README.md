@@ -84,7 +84,14 @@ To run tests:
 rspec
 ```
 
-Set `VNG_MOCK=1` to test against HTTP mocks.
+By default, tests are run with real HTTP calls to Vonigo that must be
+set with the environment variables specified above.
+
+If you do not have access to Vonigo, you can still run the tests mocked:
+
+```bash
+VNG_MOCK=1 rspec
+```
 
 How to release new versions
 ===========================

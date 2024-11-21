@@ -1,4 +1,8 @@
-## [Unreleased]
+## [Unreleased] -
+
+## [1.3] - 2024-11-21
+
+- Adds MockRequest which can be set with VNG_MOCK=1
 
 ## [1.2] - 2024-11-20
 
