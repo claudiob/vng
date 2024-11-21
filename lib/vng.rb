@@ -1,14 +1,13 @@
-require 'date'
-require 'digest/md5'
-require 'json'
-require 'net/http'
+# Used by multiple resources
 require 'uri'
+require_relative 'vng/error'
+require_relative 'vng/config'
 
+# Individual resources
 require_relative 'vng/asset'
 require_relative 'vng/availability'
 require_relative 'vng/breed'
 require_relative 'vng/case'
-require_relative 'vng/config'
 require_relative 'vng/connection_error'
 require_relative 'vng/contact'
 require_relative 'vng/franchise'

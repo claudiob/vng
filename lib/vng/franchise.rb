@@ -21,7 +21,7 @@ module Vng
         zip: zip,
       }
 
-      data = request path: Vng::Availability::PATH, body: body
+      data = request path: Availability::PATH, body: body
 
       franchise_id = data['Ids']['franchiseID']
       new(id: franchise_id) unless franchise_id == '0'

@@ -1,3 +1,4 @@
+require 'date'
 require 'vng/resource'
 
 module Vng

@@ -1,3 +1,4 @@
+require 'digest/md5'
 require 'vng/resource'
 
 module Vng
@@ -32,14 +33,14 @@ module Vng
       }
 
       self.class.request path: '/api/v1/security/session/', body: body, include_security_token: false
-    rescue Vng::Error => e
+    rescue Error => e
       raise unless e.message.include? 'Same franchise ID supplied'
     end
 
     def destroy
       query = { securityToken: @token }
       self.class.request path: '/api/v1/security/logout/', query: query
-    rescue Vng::Error => e
+    rescue Error => e
       raise unless e.message.include?('Session expired') || e.message.include?('Session does not exist')
     end
   end

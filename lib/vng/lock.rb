@@ -22,7 +22,7 @@ module Vng
         startTime: minutes,
       }
 
-      data = request path: Vng::Availability::PATH, body: body
+      data = request path: Availability::PATH, body: body
 
       new id: data['Ids']['lockID']
     end

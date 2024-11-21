@@ -1,5 +1,7 @@
 require 'vng/configuration'
 
+puts "loaded config"
+
 # An object-oriented Ruby client for Voonigo.
 # @see http://www.rubydoc.info/gems/vng/
 module Vng
