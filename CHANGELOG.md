@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.1] - 2024-11-20
+
+- Support optional ActiveSupport::Notifications
+
 ## [1.0.0] - 2024-11-20
 
 - First major release

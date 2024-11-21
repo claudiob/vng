@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'example-gem', '~> 1.0'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'activesupport'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

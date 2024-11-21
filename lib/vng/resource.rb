@@ -18,8 +18,10 @@ module Vng
         request.body = body.to_json
       end
 
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.request request
+      response = instrument do |data|
+        data[:response] = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+          http.request request
+        end
       end
 
       JSON(response.body).tap do |data|
@@ -40,6 +42,15 @@ module Vng
     def self.value_for_field(data, field_id)
       field = data['Fields'].find { |field| field['fieldID'] == field_id }
       field['fieldValue'] if field
+    end
+
+    def self.instrument(&block)
+      data = {class_name: name} # TODO: Add path, query, ...
+      if defined?(ActiveSupport::Notifications)
+        ActiveSupport::Notifications.instrument 'Vng.request', data, &block
+      else
+        block.call(data)
+      end
     end
   end
 end
