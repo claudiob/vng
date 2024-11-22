@@ -46,12 +46,8 @@ module Vng
 
     # Run the request and memoize the response or the server error received.
     def response
-      instrument do |data|
-        @response ||= Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-          http.request http_request
-        end
-        puts "#{@path} #{@query} #{@body} ||| #{@response.body}"
-        data[:response] = @response
+      @response ||= Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+        http.request http_request
       end
     rescue *server_errors => e
       raise ConnectionError, e.message
@@ -94,20 +90,6 @@ module Vng
         OpenSSL::SSL::SSLError, OpenSSL::SSL::SSLErrorWaitReadable,
         Net::OpenTimeout, SocketError,
       ]
-    end
-
-    # Provides instrumentation to ActiveSupport listeners
-    def instrument(&block)
-      data = {
-        request: http_request,
-        method: http_request.method,
-        request_uri: uri
-      }
-      if defined?(ActiveSupport::Notifications)
-        ActiveSupport::Notifications.instrument 'Vng.request', data, &block
-      else
-        block.call(data)
-      end
     end
   end
 end

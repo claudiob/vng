@@ -10,7 +10,9 @@ module Vng
         body = body.merge securityToken: Vng.configuration.security_token
       end
 
-      Request.new(host: host, path: path, query: query, body: body).run
+      instrument do |data|
+        Request.new(host: host, path: path, query: query, body: body).run
+      end
     end
 
     def self.value_for_field(data, field_id)
@@ -21,6 +23,16 @@ module Vng
     # @return [String] the Vonigo API host.
     def self.host
       Vng.configuration.host
+    end
+
+    # Provides instrumentation to ActiveSupport listeners
+    def self.instrument(&block)
+      data = { class_name: name }
+      if defined?(ActiveSupport::Notifications)
+        ActiveSupport::Notifications.instrument 'Vng.request', data, &block
+      else
+        block.call data
+      end
     end
   end
 end
