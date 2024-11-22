@@ -20,7 +20,7 @@ RSpec.describe 'A typical flow' do
   let(:service_types) { Vng::ServiceType.all }
   let(:service_types_by_zip) { Vng::ServiceType.where zip: zip }
   let(:availability) { Vng::Availability.where(location_id: location.id, duration: 30, from_time: Time.now, to_time: (Time.now + 60*60*24*5)).first }
-  let(:route) { Vng::Route.all.find { |route| route.id.to_s == availability.route_id } }
+  let(:route) { Vng::Route.all.find { |route| route.id == availability.route_id } }
   let(:lock) { Vng::Lock.create duration: 30, location_id: location.id, date: availability.date, minutes: availability.minutes, route_id: route.id }
   let(:line_items) { price_items.take(3).map do |price_item|
     { price_item_id: price_item.id, tax_id: price_item.tax_id, asset_id: asset.id, description: price_item.price_item, price: price_item.value }

@@ -6,6 +6,8 @@ Vng helps you write apps that need to interact with Vonigo.
 The **source code** is available on [GitHub](https://github.com/HouseAccountEng/vng) and the **documentation** on [RubyDoc](http://www.rubydoc.info/gems/vng/frames).
 
 [![Code Climate](https://codeclimate.com/github/HouseAccountEng/vng.png)](https://codeclimate.com/github/HouseAccountEng/vng)
+[![Code coverage](https://img.shields.io/badge/code_coverage-100%25-44d298)](https://github.com/HouseAccountEng/bookmaker/actions)
+[![Rubygems](https://img.shields.io/gem/v/vng)](https://rubygems.org/gems/vng)
 
 After [registering your app](#configuring-your-app), you can run commands like:
 
@@ -104,8 +106,8 @@ Document the changes in CHANGELOG.md and README.md, bump the version, then run:
     rake release
 
 Remember that the vng gem follows [Semantic Versioning](http://semver.org).
-Any new release that is fully backward-compatible should bump the *patch* version (0.0.x).
-Any new version that breaks compatibility should bump the *minor* version (0.x.0)
+Any new release that is fully backward-compatible should bump the *minor* version (1.x).
+Any new version that breaks compatibility should bump the *major* version (x.0)
 
 How to contribute
 =================
