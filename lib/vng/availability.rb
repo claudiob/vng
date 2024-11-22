@@ -27,7 +27,7 @@ module Vng
       data = request path: PATH, body: body
 
       data['Availability'].map do |availability|
-        route_id = availability['routeID']
+        route_id = availability['routeID'].to_i
         date = Date.strptime availability['dayID'], '%Y%m%d'
         minutes = availability['startTime'].to_i
 

@@ -1,5 +1,9 @@
 ## [Unreleased] -
 
+## [1.4] - 2024-11-22
+
+- Change Availability#route_id from string to integer
+
 ## [1.3] - 2024-11-21
 
 - Adds MockRequest which can be set with VNG_MOCK=1
