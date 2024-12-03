@@ -1,5 +1,9 @@
 ## [Unreleased] -
 
+## [1.4.1] - 2024-11-22
+
+- Return more routes and availabilities in MockRequest
+
 ## [1.4] - 2024-11-22
 
 - Change Availability#route_id from string to integer

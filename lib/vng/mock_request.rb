@@ -23,7 +23,7 @@ module Vng
       @query = options.fetch :query, {}
     end
 
-    ROUTE_ID = 1630
+    AVAILABLE_ROUTE_ID = 1630
     @@logged_out = false
 
     # Sends the request and returns the body parsed from the JSON response.
@@ -65,10 +65,12 @@ module Vng
           { "Ids"=>{ "franchiseID"=>"172" } }
         elsif @body[:method] == '2'
           { "Ids"=>{ "lockID"=>"1406328" } }
+        elsif @body[:dateStart] == 2110061220 # 11/12/2036
+          { "Availability"=> [] }
         else
           { "Availability"=> [
-            { "dayID"=>"20281119", "routeID"=>"#{ROUTE_ID}", "startTime"=>"1080" },
-            { "dayID"=>"20281119", "routeID"=>"#{ROUTE_ID}", "startTime"=>"1110" },
+            { "dayID"=>"20281119", "routeID"=>"#{AVAILABLE_ROUTE_ID}", "startTime"=>"1080" },
+            { "dayID"=>"20281119", "routeID"=>"#{AVAILABLE_ROUTE_ID}", "startTime"=>"1110" },
           ] }
         end
       when '/api/v1/resources/breeds/'
@@ -113,8 +115,9 @@ module Vng
         end
       when '/api/v1/resources/Routes/'
         {"Routes" => [
-          {"routeID" => ROUTE_ID, "routeName" => "Route 1", "isActive" => true},
-          {"routeID" => 2, "routeName" => "Inactive", "isActive" => false},
+          {"routeID" => AVAILABLE_ROUTE_ID, "routeName" => "Route 1", "isActive" => true},
+          {"routeID" => 2, "routeName" => "Route 2", "isActive" => true},
+          {"routeID" => 3, "routeName" => "Route 3 (Inactive)", "isActive" => false},
         ]}
       when '/api/v1/data/WorkOrders/'
         { "WorkOrder"=>{ "objectID"=>"4138030" } }
