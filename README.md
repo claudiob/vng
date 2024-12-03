@@ -62,6 +62,14 @@ Vng.configure do |config|
 end
 ```
 
+Mocking the Vonigo API
+======================
+
+Sometimes you want to mock the API requests to Vonigo and obtain results that
+are equivalent to the original API calls. This can be useful to test your flow
+without hitting the API.
+
+
 Configuring with environment variables
 --------------------------------------
 

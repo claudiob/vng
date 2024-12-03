@@ -1,5 +1,9 @@
 ## [Unreleased] -
 
+## [1.4.2] - 2024-12-03
+
+- Fix MockRequest for no availability
+
 ## [1.4.1] - 2024-11-22
 
 - Return more routes and availabilities in MockRequest

@@ -65,7 +65,7 @@ module Vng
           { "Ids"=>{ "franchiseID"=>"172" } }
         elsif @body[:method] == '2'
           { "Ids"=>{ "lockID"=>"1406328" } }
-        elsif @body[:dateStart] == 2110061220 # 11/12/2036
+        elsif @body[:dateStart] == 2110060800 # 11/12/2036
           { "Availability"=> [] }
         else
           { "Availability"=> [
