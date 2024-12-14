@@ -23,7 +23,7 @@ Vng::Location.create address:, city:, zip:, state: state, client_id:
 Vng::Breed.all
 Vng::Asset.create name:, weight:, breed_option_id:, client_id:
 Vng::PriceItem.where location_id:, asset_id:
-Vng::Availability.where(location_id:, duration:, from_time:, to_time:
+Vng::Availability.where location_id:, duration:, from_time:, to_time:
 Vng::Lock.create date:, duration: location_id: 
 Vng::WorkOrder.create lock_id:, client_id:, contact_id:, location_id:, duration:, summary:, line_items:
 Vng::Case.create client_id:, summary:, comments:
