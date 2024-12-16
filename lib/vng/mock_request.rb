@@ -76,11 +76,15 @@ module Vng
       when '/api/v1/resources/breeds/'
         { "Breeds"=>[{ "breedID"=>2, "breed"=>"Bulldog", "species"=>"Dog", "optionID"=>303, "breedLowWeight"=>30, "breedHighWeight"=>50 }] }
       when '/api/v1/data/Leads/'
-        { "Client"=>{ "objectID"=>"916347" }, "Fields"=> [
-          { "fieldID"=>126, "fieldValue"=>"Vng Example" },
-          { "fieldID"=>238, "fieldValue"=>"vng@example.com" },
-          { "fieldID"=>1024, "fieldValue"=>"8648648640" },
-        ] }
+        if @body[:Fields].find{|field| field[:fieldID] == 1024}[:fieldValue] == 'invalid-phone'
+          raise Error.new '[{"fieldID"=>1024, "fieldName"=>"Phone # to Reach You", "errNo"=>-602, "errMsg"=>"Field data is in incorrect format."}]'
+        else
+          { "Client"=>{ "objectID"=>"916347" }, "Fields"=> [
+            { "fieldID"=>126, "fieldValue"=>"Vng Example" },
+            { "fieldID"=>238, "fieldValue"=>"vng@example.com" },
+            { "fieldID"=>1024, "fieldValue"=>"8648648640" },
+          ] }
+        end
       when '/api/v1/data/Contacts/'
         { "Contact"=>{ "objectID"=>"2201007" }, "Fields"=>[
           { "fieldID"=>127, "fieldValue"=>"Vng" },

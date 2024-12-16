@@ -1,5 +1,9 @@
 ## [Unreleased] -
 
+## [1.4.3] - 2024-12-16
+
+- Fix MockRequest for invalid phone
+
 ## [1.4.2] - 2024-12-03
 
 - Fix MockRequest for no availability
