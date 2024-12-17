@@ -3,10 +3,10 @@ Vng - a Ruby client for the Vonigo API
 
 Vng helps you write apps that need to interact with Vonigo.
 
-The **source code** is available on [GitHub](https://github.com/HouseAccountEng/vng) and the **documentation** on [RubyDoc](http://www.rubydoc.info/gems/vng/frames).
+The **source code** is available on [GitHub](https://github.com/claudiob/vng) and the **documentation** on [RubyDoc](http://www.rubydoc.info/gems/vng/frames).
 
-[![Code Climate](https://codeclimate.com/github/HouseAccountEng/vng.png)](https://codeclimate.com/github/HouseAccountEng/vng)
-[![Code coverage](https://img.shields.io/badge/code_coverage-100%25-44d298)](https://github.com/HouseAccountEng/bookmaker/actions)
+[![Code Climate](https://codeclimate.com/github/claudiob/vng.png)](https://codeclimate.com/github/claudiob/vng)
+[![Code coverage](https://img.shields.io/badge/code_coverage-100%25-44d298)](https://github.com/claudiob/bookmaker/actions)
 [![Rubygems](https://img.shields.io/gem/v/vng)](https://rubygems.org/gems/vng)
 
 After [registering your app](#configuring-your-app), you can run commands like:
