@@ -21,6 +21,8 @@ module Vng
         state = body['state']
         zone_name = body['zoneName']
 
+        # TODO!! Remove the inactive ones
+
         new zip: zip, state: state, zone_name: zone_name
       end
     end
