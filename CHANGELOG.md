@@ -1,5 +1,7 @@
 ## [Unreleased] -
 
+- Filter out ZIP codes with status 'Owned – Deactivated'
+
 ## [1.4.3] - 2024-12-16
 
 - Fix MockRequest for invalid phone

@@ -16,7 +16,9 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data['Zips'].map do |body|
+      data['Zips'].reject do |franchise|
+        franchise['zipStatus'].eql? 'Owned – Deactivated'
+      end.map do |body|
         zip = body['zip']
         state = body['state']
         zone_name = body['zoneName']
