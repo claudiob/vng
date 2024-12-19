@@ -1,6 +1,7 @@
-## [Unreleased] -
+## [1.4.4] - 2024-12-20
 
 - Filter out ZIP codes with status 'Owned – Deactivated'
+- More breeds returned by MockRequest
 
 ## [1.4.3] - 2024-12-16
 

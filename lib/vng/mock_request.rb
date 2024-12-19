@@ -74,7 +74,29 @@ module Vng
           ] }
         end
       when '/api/v1/resources/breeds/'
-        { "Breeds"=>[{ "breedID"=>2, "breed"=>"Bulldog", "species"=>"Dog", "optionID"=>303, "breedLowWeight"=>30, "breedHighWeight"=>50 }] }
+        { "Breeds"=>[
+          { "breedID"=>2, "breed"=>"Bulldog", "species"=>"Dog", "optionID"=>303, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>3, "breed"=>"Affenpinscher", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>4, "breed"=>"Afghan", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>5, "breed"=>"Airedale Terrier", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>6, "breed"=>"Akita", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>7, "breed"=>"Alaskan Malamute", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>8, "breed"=>"American Eskimo", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>9, "breed"=>"American Pit Bull Terrier", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>10, "breed"=>"American Staffordshire Terrier", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>11, "breed"=>"American Stratford Terrier", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>12, "breed"=>"Anatolian Shepherd", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>13, "breed"=>"Ausssiedoodle", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>14, "breed"=>"Australian Shepherd", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>15, "breed"=>"Australian Terrier", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>16, "breed"=>"Abyssinian", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>17, "breed"=>"American Bobtail", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>18, "breed"=>"Bengal", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>19, "breed"=>"Birman", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>20, "breed"=>"Bombay", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>21, "breed"=>"Burmese", "species"=>"Cat", "optionID"=>306, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>22, "breed"=>"Chartreux", "species"=>"Cat", "optionID"=>306, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+        ] }
       when '/api/v1/data/Leads/'
         if @body[:Fields].find{|field| field[:fieldID] == 1024}[:fieldValue] == 'invalid-phone'
           raise Error.new '[{"fieldID"=>1024, "fieldName"=>"Phone # to Reach You", "errNo"=>-602, "errMsg"=>"Field data is in incorrect format."}]'
