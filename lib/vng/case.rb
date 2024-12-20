@@ -11,10 +11,9 @@ module Vng
       @id = id
     end
 
-    def self.create(client_id:, summary:, comments:, phone:, email:, zip:)
+    def self.create(client_id: nil, summary:, comments:, phone:, email:, zip:)
       body = {
         method: '3',
-        clientID: client_id,
         Fields: [
            { fieldID: 219, optionID: 239 }, # Status: open
            { fieldID: 220, fieldValue: summary }, # Summary:
@@ -26,6 +25,7 @@ module Vng
            { fieldID: 1023, fieldValue: zip }, # Zip Code:
         ]
       }
+      body[:clientID] = client_id if client_id
 
       data = request path: PATH, body: body
 
