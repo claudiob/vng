@@ -1,3 +1,7 @@
+## [1.5.0] - 2024-12-20
+
+- Allow Case to be created without client_id
+
 ## [1.4.4] - 2024-12-20
 
 - Filter out ZIP codes with status 'Owned – Deactivated'
