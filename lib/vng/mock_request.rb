@@ -75,7 +75,7 @@ module Vng
         end
       when '/api/v1/resources/breeds/'
         { "Breeds"=>[
-          { "breedID"=>2, "breed"=>"Bulldog", "species"=>"Dog", "optionID"=>303, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>2, "breed"=>"Bulldog", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
           { "breedID"=>3, "breed"=>"Affenpinscher", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
           { "breedID"=>4, "breed"=>"Afghan", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
           { "breedID"=>5, "breed"=>"Airedale Terrier", "species"=>"Dog", "optionID"=>304, "breedLowWeight"=>30, "breedHighWeight"=>50 },
@@ -94,8 +94,8 @@ module Vng
           { "breedID"=>18, "breed"=>"Bengal", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
           { "breedID"=>19, "breed"=>"Birman", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
           { "breedID"=>20, "breed"=>"Bombay", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
-          { "breedID"=>21, "breed"=>"Burmese", "species"=>"Cat", "optionID"=>306, "breedLowWeight"=>30, "breedHighWeight"=>50 },
-          { "breedID"=>22, "breed"=>"Chartreux", "species"=>"Cat", "optionID"=>306, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>21, "breed"=>"Burmese", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
+          { "breedID"=>22, "breed"=>"Chartreux", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
         ] }
       when '/api/v1/data/Leads/'
         if @body[:Fields].find{|field| field[:fieldID] == 1024}[:fieldValue] == 'invalid-phone'
@@ -118,16 +118,43 @@ module Vng
         { "Location"=>{ "objectID"=>"995681" } }
       when '/api/v1/data/Assets/'
         if @body[:method].eql? '3'
-          { "Asset"=>{ "objectID"=>"2201008" } }
+          if @body[:Fields].find{|field| field[:fieldID] == 1014}[:optionID].eql? 304
+            { "Asset"=>{ "objectID"=>"2201008" } } # dog
+          elsif @body[:Fields].find{|field| field[:fieldID] == 1014}[:optionID].eql? 305
+            { "Asset"=>{ "objectID"=>"2201009" } } # cat
+          end
         elsif @body[:method].eql? '4'
           {}
         end
       when '/api/v1/data/priceLists/'
-        { "PriceItems"=>[
-          { "priceItemID"=>275111, "priceItem"=>"15 Step SPA Grooming", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
-          { "priceItemID"=>275300, "priceItem"=>"De-Matting - Light", "value"=>10.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
-          { "priceItemID"=>275301, "priceItem"=>"De-Shedding Treatment", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>false },
-        ] }
+        if @body[:assetID].eql? 2201008
+          { "PriceItems"=>[
+            { "priceItemID"=>275111, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275112, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>275300, "priceItem"=>"Bulldog American - Shave Down", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Not Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275301, "priceItem"=>"Bulldog American - Puppy Cut", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>275302, "priceItem"=>"De-Shedding Treatment inactive", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>false },
+            { "priceItemID"=>275303, "priceItem"=>"De-Shedding Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275304, "priceItem"=>"De-Shedding Treatment 60 - 100 lbs", "value"=>30.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275305, "priceItem"=>"De-shedding Treatment - 101 lbs and over", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>275306, "priceItem"=>"Hot Aloe SPA Re- Moisturizing Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275307, "priceItem"=>"Aches & Pains Package", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275308, "priceItem"=>"Old Add On", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Not Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+          ] }
+        elsif @body[:assetID].eql? 2201009
+          { "PriceItems"=>[
+            { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - 15 Step SPA Grooming Service", "value"=>65.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - Lion Cut", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - Shave Down", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>276111, "priceItem"=>"De-Matting - Light", "value"=>15.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceItem"=>"De-Matting - Moderate", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+          ] }
+        end
       when '/api/v1/resources/serviceTypes/'
         if @body.key?(:zip)
           {"ServiceTypes" => [
