@@ -127,7 +127,7 @@ module Vng
           {}
         end
       when '/api/v1/data/priceLists/'
-        if @body[:assetID].eql? 2201008
+        if @body[:assetID].eql? "2201008"
           { "PriceItems"=>[
             { "priceItemID"=>275111, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
             { "priceItemID"=>275112, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
@@ -144,7 +144,7 @@ module Vng
             { "priceItemID"=>275307, "priceItem"=>"Aches & Pains Package", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
             { "priceItemID"=>275308, "priceItem"=>"Old Add On", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Not Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
           ] }
-        elsif @body[:assetID].eql? 2201009
+        elsif @body[:assetID].eql? "2201009"
           { "PriceItems"=>[
             { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - 15 Step SPA Grooming Service", "value"=>65.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
 
