@@ -48,7 +48,14 @@ module Vng
           {}
         end
       when '/api/v1/resources/zips/'
-        { "Zips"=>[{ "zip"=>"21765", "zoneName"=>"Brentwood", "state"=>"MD" }] }
+        if @body[:method] == '1'
+          # TODO: The response already includes the ServiceTypes so there
+          # is no need to ask for those in a separate API request:
+          { "Zip"=>{"zipCodeID"=>"1", "zipCode"=>"21765", "zoneName"=>"Brentwood", "defaultCity"=>"Los Angeles", "provinceAbbr"=>"CA", "franchiseID"=>"105"},
+            "ServiceTypes"=>[{"serviceTypeID"=>14, "serviceType"=>"Pet Grooming", "duration" => 45}]}
+        else
+          { "Zips"=>[{ "zip"=>"21765", "zoneName"=>"Brentwood", "state"=>"MD" }] }
+        end
       when '/api/v1/resources/franchises/'
         if @body.key?(:objectID)
           { "Franchise"=>{ "objectID"=>"2201007" }, "Fields"=>[

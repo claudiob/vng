@@ -6,6 +6,7 @@ RSpec.describe 'A typical flow' do
   let(:token) { Vng::SecurityToken.create }
   before { Vng.configure { |config| config.security_token = token.token } }
   let(:zips) { Vng::Zip.all }
+  let(:zip_code) { Vng::Zip.find_by zip: zip }
   let(:routes) { Vng::Route.all }
   let(:franchises) { Vng::Franchise.all }
   let(:active_franchise) { Vng::Franchise.find_by zip: zip }
@@ -37,6 +38,7 @@ RSpec.describe 'A typical flow' do
   it 'is successful' do
     expect(token).to be_a Vng::SecurityToken
     expect(zips).to all be_a Vng::Zip
+    expect(zip_code).to be_a Vng::Zip
     expect(franchises).to all be_a Vng::Franchise
     expect(active_franchise).to be_a Vng::Franchise
     # expect(inactive_franchise).to be_nil

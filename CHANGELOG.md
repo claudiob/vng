@@ -1,3 +1,7 @@
+## [1.6.0] - 2024-12-24
+
+- Adds Zip.find_by(zip:)
+
 ## [1.5.0] - 2024-12-20
 
 - Allow Case to be created without client_id
