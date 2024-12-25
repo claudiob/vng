@@ -1,3 +1,7 @@
+## [1.7.0] - unreleased
+
+- Adds PriceBlock.all
+
 ## [1.6.0] - 2024-12-24
 
 - Adds Zip.find_by(zip:)

@@ -17,6 +17,7 @@ RSpec.describe 'A typical flow' do
   let(:contact) { Vng::Contact.create client_id: lead.id, first_name: 'Vng', last_name: 'Example', email: email, phone: phone }
   let(:location) { Vng::Location.create client_id: lead.id, address: '16 NW Kansas Ave', city: 'Bend', state: 'OR', zip: zip }
   let(:asset) { Vng::Asset.create name: 'Lassie', weight: 66, breed_option_id: breeds.first.option_id, client_id: lead.id }
+  let(:price_blocks) { Vng::PriceBlock.all }
   let(:price_items) { Vng::PriceItem.where location_id: location.id, asset_id: asset.id }
   let(:service_types) { Vng::ServiceType.all }
   let(:service_types_by_zip) { Vng::ServiceType.where zip: zip }
@@ -49,6 +50,7 @@ RSpec.describe 'A typical flow' do
     expect(contact).to be_a Vng::Contact
     expect(location).to be_a Vng::Location
     expect(asset).to be_a Vng::Asset
+    expect(price_blocks).to all be_a Vng::PriceBlock
     expect(price_items).to all be_a Vng::PriceItem
     expect(service_types).to all be_a Vng::ServiceType
     expect(service_types_by_zip).to all be_a Vng::ServiceType
