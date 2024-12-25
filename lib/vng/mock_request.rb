@@ -133,6 +133,20 @@ module Vng
         elsif @body[:method].eql? '4'
           {}
         end
+      when '/api/v1/resources/priceBlocks/'
+        if @body[:pageNo].eql? 1
+          { "PriceBlocks" => [
+            {"priceBlockID"=>329, "priceListID"=>455, "priceBlock"=>"Affenpinscher", "sequence"=>1, "isActive"=>true},
+            {"priceBlockID"=>331, "priceListID"=>455, "priceBlock"=>"Afghan", "sequence"=>2, "isActive"=>false},
+            {"priceBlockID"=>332, "priceListID"=>455, "priceBlock"=>"Airedale Terrier", "sequence"=>3, "isActive"=>true}
+          ]}
+        else
+          { }
+        end
+      when '/api/v1/resources/priceLists/'
+        { "PriceLists" => [
+          { "priceListID" => 145, "serviceTypeID" => 14, "isActive" => true }
+        ]}
       when '/api/v1/data/priceLists/'
         if @body[:assetID].eql? "2201008"
           { "PriceItems"=>[

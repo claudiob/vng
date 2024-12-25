@@ -5,11 +5,26 @@ module Vng
   class Resource
   private
 
-    def self.request(path:, body: {}, query: {}, include_security_token: true)
+    def self.request(path:, body: {}, query: {}, include_security_token: true, returning: nil)
       if query.none? && include_security_token
         body = body.merge securityToken: Vng.configuration.security_token
       end
 
+      if returning
+        [].tap do |response|
+          1.step do |page_number|
+            body = body.merge pageSize: 500, pageNo: page_number
+            batch = response_for(path:, body:, query:).fetch(returning, [])
+            break if batch.empty? || page_number > 20
+            response.concat batch
+          end
+        end
+      else
+        response_for path:, body:, query:
+      end
+    end
+
+    def self.response_for(path:, body: {}, query: {})
       instrument do |data|
         Request.new(host: host, path: path, query: query, body: body).run
       end
