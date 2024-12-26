@@ -145,7 +145,9 @@ module Vng
         end
       when '/api/v1/resources/priceLists/'
         { "PriceLists" => [
-          { "priceListID" => 145, "serviceTypeID" => 14, "isActive" => true }
+          { "priceListID" => 145, "priceList": "Pet Grooming Default", "serviceTypeID" => 14, "isActive" => true },
+          { "priceListID" => 146, "priceList": "Pet Grooming Special", "serviceTypeID" => 14, "isActive" => true },
+          { "priceListID" => 147, "priceList": "Pet Grooming Old", "serviceTypeID" => 14, "isActive" => false },
         ]}
       when '/api/v1/data/priceLists/'
         if @body[:assetID].eql? "2201008"

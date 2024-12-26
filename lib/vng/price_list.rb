@@ -5,20 +5,25 @@ module Vng
   class PriceList < Resource
     PATH = '/api/v1/resources/priceLists/'
 
-    attr_reader :id
+    attr_reader :id, :name
 
-    def initialize(id:)
+    def initialize(id:, name:)
       @id = id
+      @name = name
     end
 
-    def self.find_by(service_type_id:)
+    def self.all
       data = request path: PATH
 
-      id = data['PriceLists'].find do |price_list|
-        price_list['isActive'] && price_list['serviceTypeID'] == service_type_id
-      end
+      data['PriceLists'].filter_map do |price_list|
+        next unless price_list['isActive']
+        next unless price_list['serviceTypeID'].eql?(14)
 
-      new(id: id) if id
+        id = price_list['priceListID']
+        name = price_list['priceList']
+
+        new id: id, name: name
+      end
     end
   end
 end

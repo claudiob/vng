@@ -1,5 +1,6 @@
 ## [1.7.0] - unreleased
 
+- Adds PriceList.all
 - Adds PriceBlock.all
 
 ## [1.6.0] - 2024-12-24
