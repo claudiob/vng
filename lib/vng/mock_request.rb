@@ -138,7 +138,8 @@ module Vng
           { "PriceBlocks" => [
             {"priceBlockID"=>329, "priceListID"=>455, "priceBlock"=>"Affenpinscher", "sequence"=>1, "isActive"=>true},
             {"priceBlockID"=>331, "priceListID"=>455, "priceBlock"=>"Afghan", "sequence"=>2, "isActive"=>false},
-            {"priceBlockID"=>332, "priceListID"=>455, "priceBlock"=>"Airedale Terrier", "sequence"=>3, "isActive"=>true}
+            {"priceBlockID"=>332, "priceListID"=>455, "priceBlock"=>"Airedale Terrier", "sequence"=>3, "isActive"=>true},
+            {"priceBlockID"=>333, "priceListID"=>455, "priceBlock"=>"Persian", "sequence"=>4, "isActive"=>true},
           ]}
         else
           { }
@@ -149,33 +150,54 @@ module Vng
           { "priceListID" => 146, "priceList": "Pet Grooming Special", "serviceTypeID" => 14, "isActive" => true },
           { "priceListID" => 147, "priceList": "Pet Grooming Old", "serviceTypeID" => 14, "isActive" => false },
         ]}
-      when '/api/v1/data/priceLists/'
-        if @body[:assetID].eql? "2201008"
+      when '/api/v1/resources/priceItems/'
+        if @body[:pageNo].eql? 1
           { "PriceItems"=>[
-            { "priceItemID"=>275111, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275112, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275111, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>1, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
 
-            { "priceItemID"=>275300, "priceItem"=>"Bulldog American - Shave Down", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Not Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275301, "priceItem"=>"Bulldog American - Puppy Cut", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275300, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>3, "priceItem"=>"Bulldog American - Shave Down", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Not Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275301, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>4, "priceItem"=>"Bulldog American - Puppy Cut", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
 
-            { "priceItemID"=>275302, "priceItem"=>"De-Shedding Treatment inactive", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>false },
-            { "priceItemID"=>275303, "priceItem"=>"De-Shedding Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275304, "priceItem"=>"De-Shedding Treatment 60 - 100 lbs", "value"=>30.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275305, "priceItem"=>"De-shedding Treatment - 101 lbs and over", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275302, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>5, "priceItem"=>"De-Shedding Treatment inactive", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>false },
+            { "priceItemID"=>275303, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>6, "priceItem"=>"De-Shedding Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275304, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>7, "priceItem"=>"De-Shedding Treatment 60 - 100 lbs", "value"=>30.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275305, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>8, "priceItem"=>"De-shedding Treatment - 101 lbs and over", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
 
-            { "priceItemID"=>275306, "priceItem"=>"Hot Aloe SPA Re- Moisturizing Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275307, "priceItem"=>"Aches & Pains Package", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275308, "priceItem"=>"Old Add On", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Not Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275306, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>9, "priceItem"=>"Hot Aloe SPA Re- Moisturizing Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275307, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>10, "priceItem"=>"Aches & Pains Package", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275308, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>11, "priceItem"=>"Old Add On", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Not Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+          ] }
+        else
+          { }
+        end
+      when '/api/v1/data/priceLists/'
+        if @body[:assetID].eql?("2201008")
+          { "PriceItems"=>[
+            { "priceItemID"=>275111, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>1, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>275300, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>3, "priceItem"=>"Bulldog American - Shave Down", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Not Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275301, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>4, "priceItem"=>"Bulldog American - Puppy Cut", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>275302, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>5, "priceItem"=>"De-Shedding Treatment inactive", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>false },
+            { "priceItemID"=>275303, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>6, "priceItem"=>"De-Shedding Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275304, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>7, "priceItem"=>"De-Shedding Treatment 60 - 100 lbs", "value"=>30.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275305, "priceBlockID"=>331, "descriptionHelp"=>"A price item", "sequence"=>8, "priceItem"=>"De-shedding Treatment - 101 lbs and over", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"De-Shed", "isOnline"=>true, "isActive"=>true },
+
+            { "priceItemID"=>275306, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>9, "priceItem"=>"Hot Aloe SPA Re- Moisturizing Treatment 0-30 lbs", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>20.0, "serviceBadge"=>nil, "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275307, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>10, "priceItem"=>"Aches & Pains Package", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275308, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>11, "priceItem"=>"Old Add On", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Not Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
           ] }
         elsif @body[:assetID].eql? "2201009"
           { "PriceItems"=>[
-            { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - 15 Step SPA Grooming Service", "value"=>65.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceBlockID"=>333, "descriptionHelp"=>"A price item", "sequence"=>21, "priceItem"=>"Cat Short Hair - 15 Step SPA Grooming Service", "value"=>65.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
 
-            { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - Lion Cut", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>276111, "priceItem"=>"Cat Short Hair - Shave Down", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceBlockID"=>333, "descriptionHelp"=>"A price item", "sequence"=>22, "priceItem"=>"Cat Short Hair - Lion Cut", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceBlockID"=>333, "descriptionHelp"=>"A price item", "sequence"=>23, "priceItem"=>"Cat Short Hair - Shave Down", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
 
-            { "priceItemID"=>276111, "priceItem"=>"De-Matting - Light", "value"=>15.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>276111, "priceItem"=>"De-Matting - Moderate", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceBlockID"=>333, "descriptionHelp"=>"A price item", "sequence"=>24, "priceItem"=>"De-Matting - Light", "value"=>15.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>276111, "priceBlockID"=>333, "descriptionHelp"=>"A price item", "sequence"=>25, "priceItem"=>"De-Matting - Moderate", "value"=>20.0, "taxID"=>256, "durationPerUnit"=>15.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
           ] }
         end
       when '/api/v1/resources/serviceTypes/'
