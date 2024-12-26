@@ -1,3 +1,9 @@
+## [2.0.0] - 2024-12-26
+
+** Breaking changes**
+
+- Remove ServiceType.all and ServiceType.where(zip:)
+
 ## [1.7.0] - 2024-12-26
 
 - Adds PriceItem.for_price_list_id

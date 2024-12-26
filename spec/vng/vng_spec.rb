@@ -21,8 +21,6 @@ RSpec.describe 'A typical flow' do
   let(:price_blocks) { Vng::PriceBlock.for_price_list_id(price_lists.first.id) }
   let(:list_price_items) { Vng::PriceItem.for_price_list_id(price_lists.first.id) }
   let(:price_items) { Vng::PriceItem.where location_id: location.id, asset_id: asset.id }
-  let(:service_types) { Vng::ServiceType.all }
-  let(:service_types_by_zip) { Vng::ServiceType.where zip: zip }
   let(:availability) { Vng::Availability.where(location_id: location.id, duration: 30, from_time: Time.now, to_time: (Time.now + 60*60*24*5)).first }
   let(:route) { Vng::Route.all.find { |route| route.id == availability.route_id } }
   let(:lock) { Vng::Lock.create duration: 30, location_id: location.id, date: availability.date, minutes: availability.minutes, route_id: route.id }
@@ -56,8 +54,6 @@ RSpec.describe 'A typical flow' do
     expect(price_blocks).to all be_a Vng::PriceBlock
     expect(list_price_items).to all be_a Vng::PriceItem
     expect(price_items).to all be_a Vng::PriceItem
-    expect(service_types).to all be_a Vng::ServiceType
-    expect(service_types_by_zip).to all be_a Vng::ServiceType
     expect(availability).to be_a Vng::Availability
     expect(lock).to be_a Vng::Lock
     expect(work_order).to be_a Vng::WorkOrder
