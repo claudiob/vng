@@ -20,6 +20,7 @@ module Vng
       data = request path: PATH
 
       data['Zips'].reject do |franchise|
+        # TODO: add "Owned - Not In Service"
         franchise['zipStatus'].eql? 'Owned – Deactivated'
       end.map do |body|
         zip = body['zip']
@@ -39,12 +40,15 @@ module Vng
       data = request path: PATH, body: body
       zip_data = data['Zip']
 
+      # TODO: Remove ServiceType class, store duration and price_list_id
+      # inside Zip itself
       unless zip_data['zipCodeID'] == '0'
         service_types = data['ServiceTypes'].map do |body|
           id = body['serviceTypeID']
           type = body['serviceType']
           duration = body['duration']
-          ServiceType.new id: id, type: type, duration: duration
+          price_list_id = body['priceID']
+          ServiceType.new id: id, type: type, duration: duration, price_list_id: price_list_id
         end
 
         new zip: zip_data['zipCode'], state: zip_data['provinceAbbr'], zone_name: zip_data['zoneName'], city: zip_data['defaultCity'], service_types: service_types

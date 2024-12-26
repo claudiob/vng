@@ -5,42 +5,13 @@ module Vng
   class ServiceType < Resource
     PATH = '/api/v1/resources/serviceTypes/'
 
-    attr_reader :id, :type, :duration
+    attr_reader :id, :type, :duration, :price_list_id
 
-    def initialize(id:, type:, duration:)
+    def initialize(id:, type:, duration:, price_list_id:)
       @id = id
       @type = type
       @duration = duration
-    end
-
-    def self.all
-      data = request path: PATH
-
-      data['ServiceTypes'].map do |body|
-        id = body['serviceTypeID']
-        type = body['serviceType']
-        duration = body['duration']
-
-        new id: id, type: type, duration: duration
-      end
-    end
-
-    def self.where(zip:)
-      body = {
-        zip: zip,
-      }
-
-      data = request path: PATH, body: body
-
-      data.fetch('ServiceTypes', []).filter do |body|
-        body['isActive']
-      end.map do |body|
-        id = body['serviceTypeID']
-        type = body['serviceType']
-        duration = body['duration']
-
-        new id: id, type: type, duration: duration
-      end
+      @price_list_id = price_list_id
     end
   end
 end
