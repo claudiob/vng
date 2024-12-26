@@ -18,7 +18,7 @@ RSpec.describe 'A typical flow' do
   let(:location) { Vng::Location.create client_id: lead.id, address: '16 NW Kansas Ave', city: 'Bend', state: 'OR', zip: zip }
   let(:asset) { Vng::Asset.create name: 'Lassie', weight: 66, breed_option_id: breeds.first.option_id, client_id: lead.id }
   let(:price_lists) { Vng::PriceList.all }
-  let(:price_blocks) { Vng::PriceBlock.all }
+  let(:price_blocks) { Vng::PriceBlock.for_price_list_id(price_lists.first.id) }
   let(:list_price_items) { Vng::PriceItem.for_price_list_id(price_lists.first.id) }
   let(:price_items) { Vng::PriceItem.where location_id: location.id, asset_id: asset.id }
   let(:service_types) { Vng::ServiceType.all }

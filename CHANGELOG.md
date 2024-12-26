@@ -1,8 +1,8 @@
-## [1.7.0] - unreleased
+## [1.7.0] - 2024-12-26
 
 - Adds PriceItem.for_price_list_id
 - Adds PriceList.all
-- Adds PriceBlock.all
+- Adds PriceBlock.for_price_list_id
 
 ## [1.6.0] - 2024-12-24
 
