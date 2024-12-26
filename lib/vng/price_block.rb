@@ -16,7 +16,7 @@ module Vng
 
     def self.all
       # only return price blocks of serviceType 'Pet Grooming'
-      price_list = PriceList.find_by service_type_id: 14
+      price_list = PriceList.all.first
       body = { priceListID: price_list.id }
 
       data = request path: PATH, body: body, returning: 'PriceBlocks'
