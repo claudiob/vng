@@ -1,5 +1,6 @@
 ## [1.7.0] - unreleased
 
+- Adds PriceItem.for_price_list_id
 - Adds PriceList.all
 - Adds PriceBlock.all
 
