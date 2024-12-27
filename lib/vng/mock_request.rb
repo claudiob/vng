@@ -122,13 +122,13 @@ module Vng
           { "fieldID"=>96, "fieldValue"=>"8648648640" },
         ] }
       when '/api/v1/data/Locations/'
-        { "Location"=>{ "objectID"=>"995681" } }
+        { "Location"=>{ "objectID"=>995681 } }
       when '/api/v1/data/Assets/'
         if @body[:method].eql? '3'
           if @body[:Fields].find{|field| field[:fieldID] == 1014}[:optionID].eql? 304
-            { "Asset"=>{ "objectID"=>"2201008" } } # dog
+            { "Asset"=>{ "objectID"=>2201008 } } # dog
           elsif @body[:Fields].find{|field| field[:fieldID] == 1014}[:optionID].eql? 305
-            { "Asset"=>{ "objectID"=>"2201009" } } # cat
+            { "Asset"=>{ "objectID"=>2201009 } } # cat
           end
         elsif @body[:method].eql? '4'
           {}
@@ -172,7 +172,7 @@ module Vng
           { }
         end
       when '/api/v1/data/priceLists/'
-        if @body[:assetID].eql?("2201008")
+        if @body[:assetID].eql?(2201008)
           { "PriceItems"=>[
             { "priceItemID"=>275111, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>1, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
             { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
@@ -189,7 +189,7 @@ module Vng
             { "priceItemID"=>275307, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>10, "priceItem"=>"Aches & Pains Package", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
             { "priceItemID"=>275308, "priceBlockID"=>332, "descriptionHelp"=>"A price item", "sequence"=>11, "priceItem"=>"Old Add On", "value"=>0.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Not Offered", "serviceCategory"=>"Add Ons", "isOnline"=>true, "isActive"=>true },
           ] }
-        elsif @body[:assetID].eql? "2201009"
+        elsif @body[:assetID].eql? 2201009
           { "PriceItems"=>[
             { "priceItemID"=>276111, "priceBlockID"=>333, "descriptionHelp"=>"A price item", "sequence"=>21, "priceItem"=>"Cat Short Hair - 15 Step SPA Grooming Service", "value"=>65.0, "taxID"=>256, "durationPerUnit"=>60.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
 
