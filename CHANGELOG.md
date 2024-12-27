@@ -1,3 +1,7 @@
+## [2.0.1] - 2024-12-26
+
+- Fix MockRequest for types
+
 ## [2.0.0] - 2024-12-26
 
 ** Breaking changes**
