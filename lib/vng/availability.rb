@@ -14,15 +14,17 @@ module Vng
       @minutes = minutes
     end
 
-    def self.where(location_id:, duration:, from_time:, to_time:)
+    def self.where(location_id: nil, zip: nil, duration:, from_time:, to_time:)
       body = {
         method: '0',
         serviceTypeID: '14', # only return items of serviceType 'Pet Grooming'
-        locationID: location_id,
         duration: [duration.to_i, 30].max, # or 'duration is not provided'
         dateStart: from_time.to_i,
         dateEnd: to_time.to_i,
       }
+
+      body[:locationID] = location_id if location_id
+      body[:zip] = zip if zip
 
       data = request path: PATH, body: body
 
