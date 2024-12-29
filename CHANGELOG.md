@@ -1,3 +1,7 @@
+## [2.1.0] - 2024-12-8
+
+- Adds Availability.where(zip:)
+
 ## [2.0.1] - 2024-12-26
 
 - Fix MockRequest for types
