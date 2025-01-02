@@ -20,8 +20,7 @@ module Vng
       data = request path: PATH
 
       data.fetch('Zips', []).reject do |franchise|
-        # TODO: add "Owned - Not In Service"
-        franchise['zipStatus'].eql? 'Owned – Deactivated'
+        ['Owned – Deactivated', 'Owned - Not In Service'].include? franchise['zipStatus']
       end.map do |body|
         zip = body['zip']
         state = body['state']
