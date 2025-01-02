@@ -15,7 +15,7 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data['PriceLists'].filter_map do |price_list|
+      data.fetch('PriceLists', []).filter_map do |price_list|
         next unless price_list['isActive']
         next unless price_list['serviceTypeID'].eql?(14)
 

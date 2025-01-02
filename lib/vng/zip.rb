@@ -19,7 +19,7 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data['Zips'].reject do |franchise|
+      data.fetch('Zips', []).reject do |franchise|
         # TODO: add "Owned - Not In Service"
         franchise['zipStatus'].eql? 'Owned – Deactivated'
       end.map do |body|

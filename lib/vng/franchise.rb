@@ -46,7 +46,7 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data['Franchises'].filter do |franchise|
+      data.fetch('Franchises', []).filter do |franchise|
         franchise['isActive']
       end.map do |franchise|
         id = franchise['franchiseID']

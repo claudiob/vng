@@ -19,7 +19,7 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data['Breeds'].map do |breed|
+      data.fetch('Breeds', []).map do |breed|
         id = breed['breedID']
         name = breed['breed']
         species = breed['species']
