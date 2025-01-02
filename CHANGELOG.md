@@ -1,3 +1,7 @@
+## [2.2.1] - 2025-01-02
+
+- Always return an array for .all methods
+
 ## [2.2.0] - 2025-01-02
 
 - Adds Franchise#cell and Franchise#phone
@@ -12,7 +16,7 @@
 
 ## [2.0.0] - 2024-12-26
 
-** Breaking changes**
+**Breaking changes**
 
 - Remove ServiceType.all and ServiceType.where(zip:)
 
