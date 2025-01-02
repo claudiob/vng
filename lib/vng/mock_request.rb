@@ -60,6 +60,8 @@ module Vng
         if @body.key?(:objectID)
           { "Franchise"=>{ "objectID"=>"2201007" }, "Fields"=>[
             { "fieldID"=>9, "fieldValue"=>"vng@example.com" },
+            { "fieldID"=>18, "fieldValue"=>"3103103100", "optionID"=>0 },
+            { "fieldID"=>1001, "fieldValue"=>"3103103100", "optionID"=>0 },
           ] }
         else
           { "Franchises"=>[
