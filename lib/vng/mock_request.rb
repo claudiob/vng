@@ -54,7 +54,11 @@ module Vng
           { "Zip"=>{"zipCodeID"=>"1", "zipCode"=>"21765", "zoneName"=>"Brentwood", "defaultCity"=>"Los Angeles", "provinceAbbr"=>"CA", "franchiseID"=>"105"},
             "ServiceTypes"=>[{"serviceTypeID"=>14, "serviceType"=>"Pet Grooming", "duration" => 45}]}
         else
-          { "Zips"=>[{ "zip"=>"21765", "zoneName"=>"Brentwood", "state"=>"MD" }] }
+          { "Zips"=>[
+            { "zip"=>"21763", "zoneName"=>"Brentwood", "state"=>"MD", "zipStatus"=>"Owned - Not In Service" },
+            { "zip"=>"21764", "zoneName"=>"Brentwood", "state"=>"MD", "zipStatus"=>"Owned – Deactivated" },
+            { "zip"=>"21765", "zoneName"=>"Brentwood", "state"=>"MD", "zipStatus"=>"Owned - Currently Serviced" },
+          ] }
         end
       when '/api/v1/resources/franchises/'
         if @body.key?(:objectID)

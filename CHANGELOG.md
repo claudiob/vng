@@ -1,6 +1,7 @@
 ## [2.2.1] - 2025-01-02
 
 - Always return an array for .all methods
+- Discard ZIP codes 'Owned - Not In Service'
 
 ## [2.2.0] - 2025-01-02
 
