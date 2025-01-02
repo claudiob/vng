@@ -5,13 +5,15 @@ module Vng
   class Franchise < Resource
     PATH = '/api/v1/resources/franchises/'
 
-    attr_reader :id, :name, :gmt_offset, :email
+    attr_reader :id, :name, :gmt_offset, :email, :phone, :cell
 
-    def initialize(id:, name: nil, gmt_offset: nil, email: nil)
+    def initialize(id:, name: nil, gmt_offset: nil, email: nil, phone: nil, cell: nil)
       @id = id
       @name = name
       @gmt_offset = gmt_offset
       @email = email
+      @phone = phone
+      @cell = cell
     end
 
 
@@ -34,8 +36,11 @@ module Vng
       }
 
       data = request path: PATH, body: body
+
       email = value_for_field data, 9
-      new id: franchise_id, email: email
+      phone = value_for_field data, 18
+      cell = value_for_field data, 1001
+      new id: franchise_id, email: email, phone: phone, cell: cell
     end
 
     def self.all

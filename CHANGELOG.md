@@ -1,4 +1,8 @@
-## [2.1.0] - 2024-12-8
+## [2.2.0] - 2025-01-02
+
+- Adds Franchise#cell and Franchise#phone
+
+## [2.1.0] - 2024-12-28
 
 - Adds Availability.where(zip:)
 
