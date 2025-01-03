@@ -160,7 +160,7 @@ module Vng
         if @body[:pageNo].eql? 1
           { "PriceItems"=>[
             { "priceItemID"=>275111, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>1, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>false, "isActive"=>true },
 
             { "priceItemID"=>275300, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>3, "priceItem"=>"Bulldog American - Shave Down", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Not Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
             { "priceItemID"=>275301, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>4, "priceItem"=>"Bulldog American - Puppy Cut", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
@@ -181,7 +181,7 @@ module Vng
         if @body[:assetID].eql?(2201008)
           { "PriceItems"=>[
             { "priceItemID"=>275111, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>1, "priceItem"=>"Bulldog American - 15 Step SPA Grooming Service", "value"=>85.0, "taxID"=>256, "durationPerUnit"=>45.0, "serviceBadge"=>"Required", "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
-            { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>true, "isActive"=>true },
+            { "priceItemID"=>275112, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>2, "priceItem"=>"Bulldog American - 15 Step SPA Super Grooming Service", "value"=>105.0, "taxID"=>256, "durationPerUnit"=>75.0, "serviceBadge"=>nil, "serviceCategory"=>"15 Step Spa", "isOnline"=>false, "isActive"=>true },
 
             { "priceItemID"=>275300, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>3, "priceItem"=>"Bulldog American - Shave Down", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Not Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },
             { "priceItemID"=>275301, "priceBlockID"=>329, "descriptionHelp"=>"A price item", "sequence"=>4, "priceItem"=>"Bulldog American - Puppy Cut", "value"=>40.0, "taxID"=>256, "durationPerUnit"=>30.0, "serviceBadge"=>"Recommended", "serviceCategory"=>"Cut", "isOnline"=>true, "isActive"=>true },

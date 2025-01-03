@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vng (2.2.1)
+    vng (2.2.2)
 
 GEM
   remote: https://rubygems.org/
