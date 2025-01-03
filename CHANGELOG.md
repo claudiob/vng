@@ -1,3 +1,7 @@
+## [2.2.2] - 2025-01-03
+
+- Adjust mocks to only return one 15 Step Spa item
+
 ## [2.2.1] - 2025-01-02
 
 - Always return an array for .all methods
