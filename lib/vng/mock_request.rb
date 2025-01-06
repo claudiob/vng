@@ -111,7 +111,7 @@ module Vng
           { "breedID"=>22, "breed"=>"Chartreux", "species"=>"Cat", "optionID"=>305, "breedLowWeight"=>30, "breedHighWeight"=>50 },
         ] }
       when '/api/v1/data/Leads/'
-        if @body[:Fields].find{|field| field[:fieldID] == 1024}[:fieldValue] == 'invalid-phone'
+        if @body[:Fields].find{|field| field[:fieldID] == 1024}[:fieldValue] == '0000000000'
           raise Error.new '[{"fieldID"=>1024, "fieldName"=>"Phone # to Reach You", "errNo"=>-602, "errMsg"=>"Field data is in incorrect format."}]'
         else
           { "Client"=>{ "objectID"=>"916347" }, "Fields"=> [
