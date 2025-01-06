@@ -1,3 +1,7 @@
+## [2.2.3] - 2025-01-06
+
+- Change mock for invalid phone to 0000000000
+
 ## [2.2.2] - 2025-01-03
 
 - Adjust mocks to only return one 15 Step Spa item
