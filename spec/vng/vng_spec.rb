@@ -28,6 +28,7 @@ RSpec.describe 'A typical flow' do
     { price_item_id: price_item.id, tax_id: price_item.tax_id, asset_id: asset.id, description: price_item.price_item, price: price_item.value }
   end }
   let(:work_order) { Vng::WorkOrder.create lock_id: lock.id, client_id: lead.id, contact_id: contact.id, location_id: location.id, duration: 30, summary: 'Example work order', line_items: line_items }
+  let(:work_orders) { Vng::WorkOrder.for_client_id lead.id }
   let(:casus) { Vng::Case.create client_id: lead.id, summary: 'Vng case', comments: 'An example case', phone: phone, email: email, zip: zip  }
 
   after do
@@ -58,6 +59,7 @@ RSpec.describe 'A typical flow' do
     expect(lock).to be_a Vng::Lock
     expect(work_order).to be_a Vng::WorkOrder
     expect(work_order.url).to match URI::regexp
+    expect(work_orders).to be_all be_a Vng::WorkOrder
     expect(casus).to be_a Vng::Case
     expect(casus.url).to match URI::regexp
   end

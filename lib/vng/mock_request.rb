@@ -224,7 +224,21 @@ module Vng
           {"routeID" => 3, "routeName" => "Route 3 (Inactive)", "isActive" => false},
         ]}
       when '/api/v1/data/WorkOrders/'
-        { "WorkOrder"=>{ "objectID"=>"4138030" } }
+        if @body[:isCompleteObject].eql? 'true'
+          {"WorkOrders" => [
+            {"objectID" => "4139754", "isActive" => "true", "Fields" => [
+              {"fieldID" => 185, "fieldValue" => "1736445600"},
+              {"fieldID" => 813, "fieldValue" => "135.00"},
+              {"fieldID" => 809, "fieldValue" => "0.00"},
+              {"fieldID" => 811, "fieldValue" => "0.00"},
+              {"fieldID" => 810, "fieldValue" => "0.00"},
+              {"fieldID" => 186, "fieldValue" => "30"},
+              {"fieldID" => 9835, "fieldValue" => "135.00"},
+            ]}
+          ]}
+        else
+          { "WorkOrder"=>{ "objectID"=>"4138030" } }
+        end
       when '/api/v1/data/Cases/'
         if @body[:method].eql? '3'
           {"Case" => {"objectID" => "28503"}}
