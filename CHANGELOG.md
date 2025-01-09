@@ -1,3 +1,7 @@
+## [2.3.0] - 2025-01-09
+
+- Add WorkOrder.for_client_id(client_id)
+
 ## [2.2.3] - 2025-01-06
 
 - Change mock for invalid phone to 0000000000

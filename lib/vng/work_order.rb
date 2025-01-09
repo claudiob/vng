@@ -5,10 +5,17 @@ module Vng
   class WorkOrder < Resource
     PATH = '/api/v1/data/WorkOrders/'
 
-    attr_reader :id
+    attr_reader :id, :scheduled_on, :price, :discount, :tax, :tip, :duration, :total
 
-    def initialize(id:)
+    def initialize(id:, scheduled_on: nil, price: nil, discount: nil, tax: nil, tip: nil, duration: nil, total: nil)
       @id = id
+      @scheduled_on = scheduled_on
+      @price = price
+      @discount = discount
+      @tax = tax
+      @tip = tip
+      @duration = duration
+      @total = total
     end
 
     def self.create(lock_id:, client_id:, contact_id:, location_id:, duration:, summary:, line_items:)
@@ -30,6 +37,28 @@ module Vng
       data = request path: PATH, body: body
 
       new id: data['WorkOrder']['objectID']
+    end
+
+    def self.for_client_id(client_id)
+      body = { clientID: client_id, isCompleteObject: 'true' }
+
+      data = request path: PATH, body: body, returning: 'WorkOrders'
+
+      data.filter_map do |body|
+        next unless body['isActive']
+
+        id = body['objectID']
+        # scheduled_on is in the time zone of the franchise, not UTC
+        scheduled_on = Time.at Integer(value_for_field body, 185), in: 'UTC'
+        price = BigDecimal(value_for_field body, 813)
+        discount = BigDecimal(value_for_field body, 809)
+        tax = BigDecimal(value_for_field body, 811)
+        tip = BigDecimal(value_for_field body, 810)
+        duration = Integer(value_for_field body, 186)
+        total = BigDecimal(value_for_field body, 9835)
+
+        new id:, scheduled_on:, price:, discount:, tax:, tip:, duration:, total:
+      end
     end
 
     # Returns the URL to manage the work order in the Vonigo UI.

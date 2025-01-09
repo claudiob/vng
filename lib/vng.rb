@@ -1,4 +1,5 @@
 # Used by multiple resources
+require 'bigdecimal'
 require 'uri'
 require_relative 'vng/error'
 require_relative 'vng/config'
