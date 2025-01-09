@@ -1,3 +1,7 @@
+## [2.3.1] - 2025-01-09
+
+- Fix mocks for WorkOrder.for_client_id(client_id)
+
 ## [2.3.0] - 2025-01-09
 
 - Add WorkOrder.for_client_id(client_id)

@@ -224,7 +224,7 @@ module Vng
           {"routeID" => 3, "routeName" => "Route 3 (Inactive)", "isActive" => false},
         ]}
       when '/api/v1/data/WorkOrders/'
-        if @body[:isCompleteObject].eql? 'true'
+        if @body[:pageNo].eql? 1
           {"WorkOrders" => [
             {"objectID" => "4139754", "isActive" => "true", "Fields" => [
               {"fieldID" => 185, "fieldValue" => "1736445600"},
