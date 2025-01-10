@@ -123,7 +123,7 @@ module Vng
       when '/api/v1/data/Contacts/'
         if @body[:pageNo].eql? 1
           {"Contacts" => [
-            {"objectID" => "2201007", "isActive" => "true", "Fields" => [
+            {"objectID" => "2201007", "dateLastEdited" => "1736479080", "isActive" => "true", "Fields" => [
               {"fieldID"=>127, "fieldValue"=>"Vng" },
               {"fieldID"=>128, "fieldValue"=>"Example" },
               {"fieldID"=>97, "fieldValue"=>"vng@example.com" },

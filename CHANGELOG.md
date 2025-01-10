@@ -1,3 +1,11 @@
+## [3.0.0] - 2024-12-26
+
+- Add Contact.edited_since(timestamp)
+
+**Breaking changes**
+
+- Remove Contact.all
+
 ## [2.4.0] - 2025-01-09
 
 - Add Contact.all

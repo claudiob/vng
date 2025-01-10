@@ -5,19 +5,20 @@ module Vng
   class Contact < Resource
     PATH = '/api/v1/data/Contacts/'
 
-    attr_reader :id, :first_name, :last_name, :email, :phone, :client_id
+    attr_reader :id, :first_name, :last_name, :email, :phone, :client_id, :edited_at
 
-    def initialize(id:, first_name:, last_name:, email:, phone:, client_id:)
+    def initialize(id:, first_name:, last_name:, email:, phone:, client_id:, edited_at: nil)
       @id = id
       @first_name = first_name
       @last_name = last_name
       @email = email
       @phone = phone
       @client_id = client_id
+      @edited_at = edited_at
     end
 
-    def self.all # TODO: add (edited_after: param)
-      body = { isCompleteObject: 'true' }
+    def self.edited_since(timestamp)
+      body = { isCompleteObject: 'true', dateStart: timestamp.to_i, dateMode: 2 }
 
       data = request path: PATH, body: body, returning: 'Contacts'
 
@@ -30,8 +31,9 @@ module Vng
         email = value_for_field body, 97
         phone = value_for_field body, 96
         client_id = value_for_relation body, 'client'
+        edited_at = Time.at Integer(body['dateLastEdited']), in: 'UTC'
 
-        new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone, client_id: client_id
+        new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone, client_id: client_id, edited_at: edited_at
       end
     end
 
