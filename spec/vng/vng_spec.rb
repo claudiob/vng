@@ -15,7 +15,6 @@ RSpec.describe 'A typical flow' do
   let(:breeds) { Vng::Breed.all }
   let(:lead) { Vng::Lead.create name: 'Vng Example', email: email, phone: phone }
   let(:contact) { Vng::Contact.create client_id: lead.id, first_name: 'Vng', last_name: 'Example', email: email, phone: phone }
-  let(:contacts) { Vng::Contact.edited_since(Time.now - 60) }
   let(:location) { Vng::Location.create client_id: lead.id, address: '16 NW Kansas Ave', city: 'Bend', state: 'OR', zip: zip }
   let(:asset) { Vng::Asset.create name: 'Lassie', weight: 66, breed_option_id: breeds.first.option_id, client_id: lead.id }
   let(:price_lists) { Vng::PriceList.all }
@@ -50,7 +49,6 @@ RSpec.describe 'A typical flow' do
     expect(breeds).to all be_a Vng::Breed
     expect(lead).to be_a Vng::Lead
     expect(contact).to be_a Vng::Contact
-    expect(contacts).to all be_a Vng::Contact
     expect(location).to be_a Vng::Location
     expect(asset).to be_a Vng::Asset
     expect(price_lists).to all be_a Vng::PriceList

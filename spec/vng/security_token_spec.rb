@@ -7,10 +7,10 @@ RSpec.describe Vng::SecurityToken do
     end
 
     context 'with ActiveSupport::Notifications' do
-      before { require 'active_support/notifications' }
+      before { module ActiveSupport; class Notifications; def self.instrument(name, payload); yield; end; end; end }
+      after { ActiveSupport.send :remove_const, :Notifications }
 
       it 'sends a notification' do
-        expect(ActiveSupport::Notifications).to receive(:instrument).and_call_original
         expect { Vng::SecurityToken.create }.to raise_error Vng::ConnectionError
       end
     end

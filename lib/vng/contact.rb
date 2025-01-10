@@ -1,40 +1,65 @@
 require 'vng/resource'
 
+require ENV['VNG_MOCK'] ? 'vng/mock_request' : 'vng/http_request'
+require 'vng/relation'
+
 module Vng
   # Provides methods to interact with Vonigo contacts.
   class Contact < Resource
     PATH = '/api/v1/data/Contacts/'
 
-    attr_reader :id, :first_name, :last_name, :email, :phone, :client_id, :edited_at
+    # @param [Hash<Symbol, String>] data the options to initialize a resource.
+    # @option data [String] :object_id The unique ID of a Vonigo resource.
+    # @option data [Array] :fields The fields of a Vonigo resource.
+    def initialize(data = {})
+      @data = data
+    end
 
-    def initialize(id:, first_name:, last_name:, email:, phone:, client_id:, edited_at: nil)
-      @id = id
-      @first_name = first_name
-      @last_name = last_name
-      @email = email
-      @phone = phone
-      @client_id = client_id
-      @edited_at = edited_at
+    # @return [String] the resource’s unique ID.
+    def id
+      @data['objectID']
+    end
+
+    def active?
+      @data['isActive'] != 'false'
+    end
+
+    def first_name
+      self.class.value_for_field @data, 127
+    end
+
+    def last_name
+      self.class.value_for_field @data, 128
+    end
+
+    def email
+      self.class.value_for_field @data, 97
+    end
+
+    def phone
+      self.class.value_for_field @data, 96
+    end
+
+    def client_id
+      self.class.value_for_relation @data, 'client'
+    end
+
+    def edited_at
+      Time.at Integer(@data['dateLastEdited']), in: 'UTC'
+    end
+
+    # @return [Vng::Relation] the resources matching the conditions.
+    def self.where(conditions = {})
+      @where ||= Relation.new
+      @where.where conditions
     end
 
     def self.edited_since(timestamp)
-      body = { isCompleteObject: 'true', dateStart: timestamp.to_i, dateMode: 2 }
-
-      data = request path: PATH, body: body, returning: 'Contacts'
-
-      data.filter_map do |body|
-        next unless body['isActive']
-
-        id = body['objectID']
-        first_name = value_for_field body, 127
-        last_name = value_for_field body, 128
-        email = value_for_field body, 97
-        phone = value_for_field body, 96
-        client_id = value_for_relation body, 'client'
-        edited_at = Time.at Integer(body['dateLastEdited']), in: 'UTC'
-
-        new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone, client_id: client_id, edited_at: edited_at
-      end
+      contacts = where isCompleteObject: 'true', dateStart: timestamp.to_i, dateMode: 2
+      # TODO: select should accept sub-hash, e.g.
+      # .select :date_last_edited, fields: [134, 1036], relations: ['client']
+      contacts = contacts.select 'dateLastEdited', 'Fields', 'Relations'
+      contacts.lazy.filter(&:active?)
     end
 
     def self.create(first_name:, last_name:, email:, phone:, client_id:)
@@ -50,14 +75,7 @@ module Vng
       }
 
       data = request path: PATH, body: body
-
-      id = data['Contact']['objectID']
-      first_name = value_for_field data, 127
-      last_name = value_for_field data, 128
-      email = value_for_field data, 97
-      phone = value_for_field data, 96
-
-      new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone, client_id: client_id
+      new data['Contact']
     end
   end
 end
