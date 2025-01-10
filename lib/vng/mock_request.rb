@@ -121,12 +121,27 @@ module Vng
           ] }
         end
       when '/api/v1/data/Contacts/'
-        { "Contact"=>{ "objectID"=>"2201007" }, "Fields"=>[
-          { "fieldID"=>127, "fieldValue"=>"Vng" },
-          { "fieldID"=>128, "fieldValue"=>"Example" },
-          { "fieldID"=>97, "fieldValue"=>"vng@example.com" },
-          { "fieldID"=>96, "fieldValue"=>"8648648640" },
-        ] }
+        if @body[:pageNo].eql? 1
+          {"Contacts" => [
+            {"objectID" => "2201007", "isActive" => "true", "Fields" => [
+              {"fieldID"=>127, "fieldValue"=>"Vng" },
+              {"fieldID"=>128, "fieldValue"=>"Example" },
+              {"fieldID"=>97, "fieldValue"=>"vng@example.com" },
+              {"fieldID"=>96, "fieldValue"=>"8648648640" },
+            ], "Relations" => [
+              {"objectID" => 915738, "relationType" => "client", "isActive" => "true"},
+            ]}
+          ]}
+        elsif @body[:pageNo].nil?
+          { "Contact"=>{ "objectID"=>"2201007" }, "Fields"=> [
+            { "fieldID"=>127, "fieldValue"=>"Vng" },
+            { "fieldID"=>128, "fieldValue"=>"Example" },
+            { "fieldID"=>97, "fieldValue"=>"vng@example.com" },
+            { "fieldID"=>96, "fieldValue"=>"8648648640" },
+          ] }
+        else
+          { }
+        end
       when '/api/v1/data/Locations/'
         { "Location"=>{ "objectID"=>995681 } }
       when '/api/v1/data/Assets/'

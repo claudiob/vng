@@ -5,14 +5,34 @@ module Vng
   class Contact < Resource
     PATH = '/api/v1/data/Contacts/'
 
-    attr_reader :id, :first_name, :last_name, :email, :phone
+    attr_reader :id, :first_name, :last_name, :email, :phone, :client_id
 
-    def initialize(id:, first_name:, last_name:, email:, phone:)
+    def initialize(id:, first_name:, last_name:, email:, phone:, client_id:)
       @id = id
       @first_name = first_name
       @last_name = last_name
       @email = email
       @phone = phone
+      @client_id = client_id
+    end
+
+    def self.all # TODO: add (edited_after: param)
+      body = { isCompleteObject: 'true' }
+
+      data = request path: PATH, body: body, returning: 'Contacts'
+
+      data.filter_map do |body|
+        next unless body['isActive']
+
+        id = body['objectID']
+        first_name = value_for_field body, 127
+        last_name = value_for_field body, 128
+        email = value_for_field body, 97
+        phone = value_for_field body, 96
+        client_id = value_for_relation body, 'client'
+
+        new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone, client_id: client_id
+      end
     end
 
     def self.create(first_name:, last_name:, email:, phone:, client_id:)
@@ -35,7 +55,7 @@ module Vng
       email = value_for_field data, 97
       phone = value_for_field data, 96
 
-      new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone
+      new id: id, first_name: first_name, last_name: last_name, email: email, phone: phone, client_id: client_id
     end
   end
 end

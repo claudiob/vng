@@ -10,10 +10,14 @@ module Vng
         body = body.merge securityToken: Vng.configuration.security_token
       end
 
+      # TODO: I have to redo the pagination as a yield block for each page
+
       if returning
         [].tap do |response|
           1.step do |page_number|
-            body = body.merge pageSize: 500, pageNo: page_number
+            # ORDER BY edited ASC
+            body = body.merge pageSize: 500, pageNo: page_number, sortMode: 3, sortDirection: 0
+
             batch = response_for(path:, body:, query:).fetch(returning, [])
             break if batch.empty? || page_number > 20
             response.concat batch
@@ -33,6 +37,14 @@ module Vng
     def self.value_for_field(data, field_id)
       field = data['Fields'].find { |field| field['fieldID'] == field_id }
       field['fieldValue'] if field
+    end
+
+    def self.value_for_relation(data, relation_type)
+      relation = data['Relations'].find do |relation|
+        relation['relationType'] == relation_type &&
+        relation['isActive'] == 'true'
+      end
+      relation['objectID'] if relation
     end
 
     # @return [String] the Vonigo API host.
