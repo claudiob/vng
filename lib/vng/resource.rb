@@ -29,7 +29,7 @@ module Vng
     end
 
     def self.response_for(path:, body: {}, query: {})
-      instrument do |data|
+      instrument do
         Request.new(host: host, path: path, query: query, body: body).run
       end
     end
@@ -55,10 +55,10 @@ module Vng
     # Provides instrumentation to ActiveSupport listeners
     def self.instrument(&block)
       data = { class_name: name }
-      if defined?(ActiveSupport::Notifications)
+      if defined? ActiveSupport::Notifications
         ActiveSupport::Notifications.instrument 'Vng.request', data, &block
       else
-        block.call data
+        block.call
       end
     end
   end

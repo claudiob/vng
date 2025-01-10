@@ -1,4 +1,8 @@
-## [3.0.0] - 2024-12-26
+## [3.0.1] - 2025-01-10
+
+- Make Contact.edited_since lazy
+
+## [3.0.0] - 2025-01-09
 
 - Add Contact.edited_since(timestamp)
 
