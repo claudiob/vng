@@ -130,7 +130,14 @@ module Vng
               {"fieldID"=>96, "fieldValue"=>"8648648640" },
             ], "Relations" => [
               {"objectID" => 915738, "relationType" => "client", "isActive" => "true"},
-            ]}
+            ]},
+            {"objectID" => "2201008", "dateLastEdited" => "1736479081", "isActive" => "true", "Fields" => [
+              {"fieldID"=>127, "fieldValue"=>"No" },
+              {"fieldID"=>128, "fieldValue"=>"Email" },
+              {"fieldID"=>96, "fieldValue"=>"8648648640" },
+            ], "Relations" => [
+              {"objectID" => 916758, "relationType" => "client", "isActive" => "true"},
+            ]},
           ]}
         elsif @body[:pageNo].nil?
           { "Contact"=>{ "objectID"=>"2201007" }, "Fields"=> [
@@ -144,6 +151,10 @@ module Vng
         end
       when '/api/v1/data/Locations/'
         { "Location"=>{ "objectID"=>995681 } }
+      when '/api/v1/data/Clients/'
+        { "Client" => { "objectID" => "916758" }, "Fields" => [
+          { "fieldID" => 238, "fieldValue" => "vng@example.com", "optionID" => 0 }
+        ] }
       when '/api/v1/data/Assets/'
         if @body[:method].eql? '3'
           if @body[:Fields].find{|field| field[:fieldID] == 1014}[:optionID].eql? 304

@@ -1,3 +1,7 @@
+## [3.1.0] - 2025-01-11
+
+- Add Client.find(id)
+
 ## [3.0.1] - 2025-01-10
 
 - Make Contact.edited_since lazy

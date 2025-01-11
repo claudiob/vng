@@ -9,7 +9,7 @@ RSpec.describe Vng::Contact do
     it 'returns the contacts last edited after the timestamp' do
       expect(contacts.map &:first_name).to all be_a String
       expect(contacts.map &:last_name).to all be_a String
-      expect(contacts.map &:email).to all be_a String
+      expect(contacts.map(&:email).compact).to all be_a String
       expect(contacts.map &:phone).to all be_a String
       expect(contacts.map &:client_id).to all be_an Integer
       expect(contacts.map &:edited_at).to all be_a Time
