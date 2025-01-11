@@ -19,7 +19,7 @@ RSpec.describe Vng::Contact do
   context 'with ActiveSupport::Notifications' do
     before { module ActiveSupport; class Notifications; def self.instrument(name, payload); yield; end; end; end }
     after { ActiveSupport.send :remove_const, :Notifications }
-    subject(:contacts) { Vng::Contact.edited_since(Time.now - 3601) }
+    subject(:contacts) { Vng::Contact.edited_since(Time.now - 3611) }
 
     it 'sends a notification' do
       contacts.first
