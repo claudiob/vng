@@ -5,16 +5,17 @@ module Vng
   class Lead < Resource
     PATH = '/api/v1/data/Leads/'
 
-    attr_reader :id, :name, :email, :phone
+    attr_reader :id, :name, :email, :phone, :notes
 
-    def initialize(id:, name:, email:, phone:)
+    def initialize(id:, name:, email:, phone:, notes:)
       @id = id
       @name = name
       @email = email
       @phone = phone
+      @notes = notes
     end
 
-    def self.create(name:, email:, phone:)
+    def self.create(name:, email:, phone:, notes: nil)
       body = {
         method: '3',
         Fields: [
@@ -25,14 +26,17 @@ module Vng
         ]
       }
 
+      body[:Fields] << { fieldID: 108, fieldValue: notes } if notes
+
       data = request path: PATH, body: body
 
       id = data['Client']['objectID']
       name = value_for_field data, 127
       email = value_for_field data, 238
       phone = value_for_field data, 1024
+      notes = value_for_field data, 108
 
-      new id: id, name: name, email: email, phone: phone
+      new id: id, name: name, email: email, phone: phone, notes: notes
     end
   end
 end
