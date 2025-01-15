@@ -118,6 +118,7 @@ module Vng
             { "fieldID"=>126, "fieldValue"=>"Vng Example" },
             { "fieldID"=>238, "fieldValue"=>"vng@example.com" },
             { "fieldID"=>1024, "fieldValue"=>"8648648640" },
+            { "fieldID"=>108, "fieldValue"=>"Lead notes" },
           ] }
         end
       when '/api/v1/data/Contacts/'
