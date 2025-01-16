@@ -1,3 +1,7 @@
+## [3.3.0] - 2025-01-15
+
+- Add SystemObject.find_by(name:)
+
 ## [3.2.0] - 2025-01-15
 
 - Add Lead#notes

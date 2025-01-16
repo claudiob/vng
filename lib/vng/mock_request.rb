@@ -47,6 +47,21 @@ module Vng
           @@logged_out = true
           {}
         end
+      when '/api/v1/system/objects/'
+        if @body[:method] == '1'
+          { "Fields" => [
+            { "fieldID" => 795, "field" => "Marketing Campaign" },
+            { "fieldID" => 830, "field" => "Primary Contact" },
+          ], "Options" => [
+            {"optionID" => 15840, "name" => "Referral", "fieldID" => 795, "objectTypeID" => 28, "isActive" => false},
+            {"optionID" => 15841, "name" => "Website", "fieldID" => 795, "objectTypeID" => 28, "isActive" => true},
+          ] }
+        else
+          { "Objects"=>[
+            { "objectTypeID" => 15, "name" => "User" },
+            { "objectTypeID" => 28, "name" => "Lead" },
+          ] }
+        end
       when '/api/v1/resources/zips/'
         if @body[:method] == '1'
           # TODO: The response already includes the ServiceTypes so there
