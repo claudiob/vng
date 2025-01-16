@@ -15,7 +15,7 @@ module Vng
       @notes = notes
     end
 
-    def self.create(name:, email:, phone:, notes: nil)
+    def self.create(name:, email:, phone:, notes: nil, campaign_option_id: nil)
       body = {
         method: '3',
         Fields: [
@@ -27,6 +27,7 @@ module Vng
       }
 
       body[:Fields] << { fieldID: 108, fieldValue: notes } if notes
+      body[:Fields] << { fieldID: 795, optionID: campaign_option_id } if campaign_option_id
 
       data = request path: PATH, body: body
 

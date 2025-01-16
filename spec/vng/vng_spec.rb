@@ -5,6 +5,9 @@ RSpec.describe 'A typical flow' do
 
   let(:token) { Vng::SecurityToken.create }
   before { Vng.configure { |config| config.security_token = token.token } }
+  let(:system_object) { Vng::SystemObject.find_by name: 'Lead' }
+  let(:system_field) { system_object.fields.find{|field| field.name.eql? 'Marketing Campaign' } }
+  let(:system_option) { system_field.options.first }
   let(:zips) { Vng::Zip.all }
   let(:zip_code) { Vng::Zip.find_by zip: zip }
   let(:routes) { Vng::Route.all }
@@ -40,6 +43,7 @@ RSpec.describe 'A typical flow' do
 
   it 'is successful' do
     expect(token).to be_a Vng::SecurityToken
+    expect(system_option).to be_a Vng::SystemOption
     expect(zips).to all be_a Vng::Zip
     expect(zip_code).to be_a Vng::Zip
     expect(franchises).to all be_a Vng::Franchise
