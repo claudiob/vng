@@ -19,6 +19,8 @@ Vng::ServiceType.where zip:
 Vng::SecurityToken.create host:, usename:, password:
 Vng::Lead.create email:, phone:, name: full_name
 Vng::Contact.create first_name:, last_name:, email:, phone:, client_id:
+Vng::Contact.edited_since timestamp
+Vng::Client.find contact_id
 Vng::Location.create address:, city:, zip:, state: state, client_id:
 Vng::Breed.all
 Vng::Asset.create name:, weight:, breed_option_id:, client_id:
