@@ -1,3 +1,7 @@
+## [3.4.0] - 2025-01-22
+
+- Add WorkOrder#route_id
+
 ## [3.3.2] - 2025-01-22
 
 - Don't assume isActive is returned as a boolean

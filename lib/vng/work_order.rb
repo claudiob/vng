@@ -5,9 +5,9 @@ module Vng
   class WorkOrder < Resource
     PATH = '/api/v1/data/WorkOrders/'
 
-    attr_reader :id, :scheduled_on, :price, :discount, :tax, :tip, :duration, :total
+    attr_reader :id, :scheduled_on, :price, :discount, :tax, :tip, :duration, :total, :route_id
 
-    def initialize(id:, scheduled_on: nil, price: nil, discount: nil, tax: nil, tip: nil, duration: nil, total: nil)
+    def initialize(id:, scheduled_on: nil, price: nil, discount: nil, tax: nil, tip: nil, duration: nil, total: nil, route_id: nil)
       @id = id
       @scheduled_on = scheduled_on
       @price = price
@@ -16,6 +16,7 @@ module Vng
       @tip = tip
       @duration = duration
       @total = total
+      @route_id = route_id
     end
 
     def self.create(lock_id:, client_id:, contact_id:, location_id:, duration:, summary:, line_items:)
@@ -56,8 +57,9 @@ module Vng
         tip = BigDecimal(value_for_field body, 810)
         duration = Integer(value_for_field body, 186)
         total = BigDecimal(value_for_field body, 9835)
+        route_id = value_for_relation body, 'route'
 
-        new id:, scheduled_on:, price:, discount:, tax:, tip:, duration:, total:
+        new id:, scheduled_on:, price:, discount:, tax:, tip:, duration:, total:, route_id:
       end
     end
 
