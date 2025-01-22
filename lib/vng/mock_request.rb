@@ -180,6 +180,13 @@ module Vng
           end
         elsif @body[:method].eql? '4'
           {}
+        else
+          {"Assets" => [
+            {"objectID" => "2201008", "name" => "Fluffy", "isActive" => "true", "Fields" => [
+              {"fieldID" => 1014, "fieldValue" => "400", "optionID" => 400},
+              {"fieldID" => 1017, "fieldValue" => "", "optionID" => 0},
+            ]},
+          ]}
         end
       when '/api/v1/resources/priceBlocks/'
         if @body[:pageNo].eql? 1

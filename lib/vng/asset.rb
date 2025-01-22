@@ -5,10 +5,13 @@ module Vng
   class Asset < Resource
     PATH = '/api/v1/data/Assets/'
 
-    attr_reader :id
+    attr_reader :id, :name, :weight, :breed_option_id
 
-    def initialize(id:)
+    def initialize(id:, name: nil, weight: nil, breed_option_id: nil)
       @id = id
+      @name = name
+      @weight = weight
+      @breed_option_id = breed_option_id
     end
 
     def self.create(name:, weight:, breed_option_id:, client_id:)
@@ -24,15 +27,24 @@ module Vng
 
       data = request path: PATH, body: body
 
-      # curl = 'curl'.tap do |curl|
-      #   curl <<  ' -X POST'
-      #   request.each_header{|k, v| curl << %Q{ -H "#{k}: #{v}"}}
-      #   curl << %Q{ -d '#{request.body}'} if request.body
-      #   curl << %Q{ "#{uri.to_s}"}
-      # end
-      # puts curl
-
       new id: data['Asset']['objectID']
+    end
+
+    def self.for_client_id(client_id)
+      body = { clientID: client_id, isCompleteObject: 'true' }
+
+      data = request path: PATH, body: body
+
+      data.fetch('Assets', []).map do |asset|
+        next unless active?(asset)
+
+        id = asset['objectID']
+        name = asset['name']
+        breed_option_id = option_for_field asset, 1014
+        weight = value_for_field asset, 1017
+        weight = (Integer weight unless weight.empty?)
+        new id: id, name: name, weight: weight, breed_option_id: breed_option_id
+      end
     end
 
     def destroy

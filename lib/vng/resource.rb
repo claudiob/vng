@@ -39,6 +39,11 @@ module Vng
       field['fieldValue'] if field
     end
 
+    def self.option_for_field(data, field_id)
+      field = data['Fields'].find { |field| field['fieldID'] == field_id }
+      field['optionID'] if field
+    end
+
     def self.value_for_relation(data, relation_type)
       relation = data['Relations'].find do |relation|
         relation['relationType'] == relation_type &&
