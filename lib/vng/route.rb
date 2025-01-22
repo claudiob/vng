@@ -5,11 +5,12 @@ module Vng
   class Route < Resource
     PATH = '/api/v1/resources/Routes/'
 
-    attr_reader :id, :name
+    attr_reader :id, :name, :type_id
 
-    def initialize(id:, name:)
+    def initialize(id:, name:, type_id:)
       @id = id
       @name = name
+      @type_id = type_id
     end
 
     def self.all
@@ -20,8 +21,9 @@ module Vng
       end.map do |body|
         id = body['routeID']
         name = body['routeName']
+        type_id = body['routeTypeID']
 
-        new id: id, name: name
+        new id: id, name: name, type_id: type_id
       end
     end
   end
