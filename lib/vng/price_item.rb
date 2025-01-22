@@ -29,7 +29,7 @@ module Vng
       data = request path: '/api/v1/resources/priceItems/', body: body, returning: 'PriceItems'
 
       data.filter_map do |body|
-        next unless body['isOnline'] && body['isActive']
+        next unless online?(body) && active?(body)
 
         id = body['priceItemID']
         price_item = body['priceItem']
@@ -56,9 +56,9 @@ module Vng
 
       data = request path: PATH, body: body
 
-      data['PriceItems'].filter do |body|
-        body['isOnline'] && body['isActive']
-      end.map do |body|
+      data['PriceItems'].filter_map do |body|
+        next unless online?(body) && active?(body)
+
         id = body['priceItemID']
         price_item = body['priceItem']
         index = body['sequence']

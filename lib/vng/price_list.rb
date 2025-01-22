@@ -16,7 +16,7 @@ module Vng
       data = request path: PATH
 
       data.fetch('PriceLists', []).filter_map do |price_list|
-        next unless price_list['isActive']
+        next unless active?(price_list)
         next unless price_list['serviceTypeID'].eql?(14)
 
         id = price_list['priceListID']

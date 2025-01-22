@@ -46,9 +46,9 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data.fetch('Franchises', []).filter do |franchise|
-        franchise['isActive']
-      end.map do |franchise|
+      data.fetch('Franchises', []).filter_map do |franchise|
+        next unless active?(franchise)
+
         id = franchise['franchiseID']
         name = franchise['franchiseName']
         gmt_offset = franchise['gmtOffsetFranchise']

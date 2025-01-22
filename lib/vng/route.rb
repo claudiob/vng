@@ -16,9 +16,9 @@ module Vng
     def self.all
       data = request path: PATH
 
-      data.fetch('Routes', []).filter do |route|
-        route['isActive']
-      end.map do |body|
+      data.fetch('Routes', []).filter_map do |body|
+        next unless active?(body)
+
         id = body['routeID']
         name = body['routeName']
         type_id = body['routeTypeID']
