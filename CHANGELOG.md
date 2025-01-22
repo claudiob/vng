@@ -1,3 +1,7 @@
+## [3.3.2] - 2025-01-22
+
+- Don't assume isActive is returned as a boolean
+
 ## [3.3.1] - 2025-01-22
 
 - Add Route#type_id

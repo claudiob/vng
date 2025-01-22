@@ -1,6 +1,6 @@
 module Vng
   # Provides methods to interact with Vonigo system fields’ options.
-  class SystemOption
+  class SystemOption < Resource
     attr_reader :id, :name
 
     def initialize(id:, name:)
@@ -10,7 +10,7 @@ module Vng
 
     def self.for_system_field_id(system_field_id, options = {})
       options.lazy.filter_map do |option|
-        next unless option['isActive']
+        next unless active?(option)
 
         if option['fieldID'].eql? system_field_id
           new id: option['optionID'], name: option['name']

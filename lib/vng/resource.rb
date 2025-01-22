@@ -42,9 +42,17 @@ module Vng
     def self.value_for_relation(data, relation_type)
       relation = data['Relations'].find do |relation|
         relation['relationType'] == relation_type &&
-        relation['isActive'] == 'true'
+        active?(relation)
       end
       relation['objectID'] if relation
+    end
+
+    def self.active?(item)
+      item['isActive'].to_s.eql? 'true'
+    end
+
+    def self.online?(item)
+      item['isOnline'].to_s.eql? 'true'
     end
 
     # @return [String] the Vonigo API host.

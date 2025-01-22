@@ -45,7 +45,7 @@ module Vng
       data = request path: PATH, body: body, returning: 'WorkOrders'
 
       data.filter_map do |body|
-        next unless body['isActive']
+        next unless active?(body)
 
         id = body['objectID']
         # scheduled_on is in the time zone of the franchise, not UTC

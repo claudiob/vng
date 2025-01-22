@@ -21,7 +21,7 @@ module Vng
     end
 
     def active?
-      @data['isActive'] != 'false'
+      self.class.active? @data
     end
 
     def first_name

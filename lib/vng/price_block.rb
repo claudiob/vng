@@ -20,7 +20,7 @@ module Vng
       data = request path: PATH, body: body, returning: 'PriceBlocks'
 
       data.filter_map do |body|
-        next unless body['isActive']
+        next unless active?(body)
 
         id = body['priceBlockID']
         name = body['priceBlock']
