@@ -1,3 +1,7 @@
+## [3.4.1] - 2025-01-22
+
+- Fix mock for WorkOrder#route_id
+
 ## [3.4.0] - 2025-01-22
 
 - Add WorkOrder#route_id
