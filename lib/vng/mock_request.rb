@@ -276,7 +276,9 @@ module Vng
               {"fieldID" => 810, "fieldValue" => "0.00"},
               {"fieldID" => 186, "fieldValue" => "30"},
               {"fieldID" => 9835, "fieldValue" => "135.00"},
-            ]}
+            ], "Relations" => [
+              {"objectID" => 2, "name" => "Route 2", "relationType" => "route", "isActive" => "true"},
+            ]},
           ]}
         else
           { "WorkOrder"=>{ "objectID"=>"4138030" } }
