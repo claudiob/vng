@@ -261,9 +261,9 @@ module Vng
         end
       when '/api/v1/resources/Routes/'
         {"Routes" => [
-          {"routeID" => AVAILABLE_ROUTE_ID, "routeName" => "Route 1", "isActive" => true},
-          {"routeID" => 2, "routeName" => "Route 2", "isActive" => true},
-          {"routeID" => 3, "routeName" => "Route 3 (Inactive)", "isActive" => false},
+          {"routeID" => AVAILABLE_ROUTE_ID, "routeName" => "Route 1", "isActive" => true, "routeTypeID" => 106},
+          {"routeID" => 2, "routeName" => "Route 2", "isActive" => true, "routeTypeID" => 107},
+          {"routeID" => 3, "routeName" => "Route 3 (Inactive)", "isActive" => false, "routeTypeID" => 1},
         ]}
       when '/api/v1/data/WorkOrders/'
         if @body[:pageNo].eql? 1

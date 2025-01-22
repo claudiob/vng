@@ -1,3 +1,7 @@
+## [3.3.1] - 2025-01-22
+
+- Add Route#type_id
+
 ## [3.3.0] - 2025-01-15
 
 - Add SystemObject.find_by(name:)
