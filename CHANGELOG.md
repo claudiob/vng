@@ -1,3 +1,7 @@
+## [3.5.1] - 2025-01-22
+
+- Fix mock for Asset.for_client_id
+
 ## [3.5.0] - 2025-01-22
 
 - Add Asset.for_client_id
