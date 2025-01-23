@@ -182,7 +182,7 @@ module Vng
           {}
         else
           {"Assets" => [
-            {"objectID" => "2201008", "name" => "Fluffy", "isActive" => "true", "Fields" => [
+            {"objectID" => "2201010", "name" => "Fluffy", "isActive" => "true", "Fields" => [
               {"fieldID" => 1014, "fieldValue" => "400", "optionID" => 304},
               {"fieldID" => 1017, "fieldValue" => "", "optionID" => 0},
             ]},
